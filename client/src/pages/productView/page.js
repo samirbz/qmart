@@ -2,15 +2,15 @@
 import style from './productView.module.css'
 import { useEffect, useState } from 'react';
 
-const ProductList = () => {
-    const [products, setProducts] = useState([]);
+const ProductView = () => {
+    const [productItem, setProductItem] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8080/products');
+                const response = await fetch('http://localhost:8080/product/list');
                 const data = await response.json();
-                setProducts(data);
+                setProductItem(data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -32,10 +32,11 @@ const ProductList = () => {
         <>
             <h1>Product List</h1>
             <ul>
-                {products.map((product) => (
-                    <li key={product.id}>
-                        <div>{product.productName}</div>
-                        <div>Price: {product.price}</div>
+                {productItem.map((item) => (
+                    //Each child in a list should have a unique "key" prop
+                    <li key={item._id}>
+                        <div>{item.productName}</div>
+                        <div>Price: {item.price}</div>
                     </li>
                 ))}
             </ul>
@@ -43,4 +44,4 @@ const ProductList = () => {
     );
 };
 
-export default ProductList;
+export default ProductView;

@@ -6,7 +6,7 @@ const Admin = () => {
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
             // Send the form data to the server
-            await fetch('http://localhost:8080/product', {
+            await fetch('http://localhost:8080/product/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

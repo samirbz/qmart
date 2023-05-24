@@ -4,20 +4,18 @@ const cors = require('cors')
 require('dotenv').config()
 const productRoute = require('./routes/productRoutes');
 
-
 const app = express()
+app.use(express.json());
 app.use(cors())
+
+
 const port = process.env.PORT;
 
 // Connect to MongoDB
 dbConnect()
 
-// Middleware
-app.use(express.json());
-
-// Routes (=>routes=>controller=>models)
+// Route
 app.use('/product', productRoute)
-app.use('/', productRoute)
 
 // Start the server
 app.listen(port, () => {
