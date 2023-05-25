@@ -9,19 +9,19 @@ const Navbar = () => {
                 <button>Search</button>
                 <ul className={styles.navbarList}>
                     <li>
-                        <Link href="/auth/login">
+                        <Link href="/login">
                             Login
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/auth/register">
+                        <Link href="/register">
                             Register
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/auth/seller">
+                        <Link href="/seller">
                             Be a seller
                         </Link>
                     </li>
