@@ -37,7 +37,9 @@ const ProductView = () => {
                     <li key={item._id}>
                         <div>{item.productName}</div>
                         <div>Price: {item.price}</div>
-                        <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" />
+                        <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" /><br />
+                        <button>Add to cart</button>
+                        <button>Buy it</button>
                     </li>
                 ))}
             </ul>
