@@ -1,16 +1,22 @@
 const Product = require('../models/ProductModel')
+const upload = require('../middlewares/uploadMiddleware');
+
 
 // POST product
 exports.createProduct = async (req, res) => {
-    try {
-        const { productName, price } = req.body;
-        const newProduct = await Product.create({ productName, price })
-        res.status(201).json(newProduct);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' })
-    }
+  try {
+    const { productName, price } = req.body;
+    const imageName = req.file.filename; // Extract the filename from the uploaded file
+
+    const newProduct = await Product.create({ productName, price, imageName });
+
+    res.status(201).json(newProduct);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 }
+
 
 // GET product
 exports.showProducts = async (req, res) => {
@@ -22,4 +28,3 @@ exports.showProducts = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' })
     }
 }
-
