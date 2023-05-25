@@ -4,26 +4,6 @@ import { Formik, Form, Field } from 'formik';
 import styles from './admin.module.css'
 
 const Admin = () => {
-    const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-        try {
-            // Send the form data to the server
-            await fetch('http://localhost:8080/product/create', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
-
-            // Reset the form fields
-            resetForm();
-            setSubmitting(false);
-            alert('Form submitted successfully!');
-        } catch (error) {
-            console.error(error);
-            alert('Error occurred while submitting the form.');
-        }
-    };
 
     const [file, setFile] = useState(null);
 
@@ -60,6 +40,29 @@ const Admin = () => {
         setFile(file);
     };
 
+    const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        try {
+            // Send the form data to the server
+            await fetch('http://localhost:8080/product/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            handleFileSave()
+            // Reset the form fields
+            resetForm();
+            setSubmitting(false);
+            alert('Form submitted successfully!');
+        } catch (error) {
+            console.error(error);
+            alert('Error occurred while submitting the form.');
+        }
+    };
+
+
+
 
     return (
         <>
@@ -80,11 +83,11 @@ const Admin = () => {
                         <label htmlFor="price">Price</label><br />
                         <Field type="number" id="price" name="price" />
                     </div>
+                    <input type="file" onChange={handleFileChange} /><br />
                     <button type="submit">Submit</button>
                 </Form>
             </Formik>
-            <input type="file" onChange={handleFileChange} /><br />
-            <button onClick={handleFileSave}>Upload</button>
+
         </>
     );
 };
