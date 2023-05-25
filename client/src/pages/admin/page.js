@@ -14,7 +14,7 @@ const Admin = () => {
             formData.append('file', file);
 
             // Send the file to the server
-            fetch('http://localhost:8080/api/upload', {
+            fetch('http://localhost:8080/product/api/upload', {
                 method: 'POST',
                 body: formData
             })
@@ -60,9 +60,6 @@ const Admin = () => {
             alert('Error occurred while submitting the form.');
         }
     };
-
-
-
 
     return (
         <>
