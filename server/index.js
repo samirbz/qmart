@@ -11,6 +11,11 @@ app.use(cors())
 
 const port = process.env.PORT;
 
+// Serve static files from the "uploads" folder
+app.use('/uploads', express.static('uploads'));
+
+
+
 // Connect to MongoDB
 dbConnect()
 
