@@ -1,4 +1,5 @@
 'use client'
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import styles from './admin.module.css'
 
@@ -24,6 +25,42 @@ const Admin = () => {
         }
     };
 
+    const [file, setFile] = useState(null);
+
+    const handleFileSave = () => {
+        if (file) {
+            // Create a new FormData object
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Send the file to the server
+            fetch('http://localhost:8080/api/upload', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    console.log(data);
+                    // You can perform additional actions here, such as displaying a success message
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the file upload
+                    console.error('Error:', error);
+                    // You can display an error message to the user here
+                });
+        } else {
+            // Handle the case when no file is selected
+            console.log('No file selected');
+        }
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setFile(file);
+    };
+
+
     return (
         <>
             <h1>Admin page</h1>
@@ -46,6 +83,8 @@ const Admin = () => {
                     <button type="submit">Submit</button>
                 </Form>
             </Formik>
+            <input type="file" onChange={handleFileChange} /><br />
+            <button onClick={handleFileSave}>Upload</button>
         </>
     );
 };
