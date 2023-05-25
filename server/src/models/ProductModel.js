@@ -8,6 +8,10 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         require: true
+    },
+    imageName: {
+        type: String,
+        default: 'default.jpeg'
     }
 })
 

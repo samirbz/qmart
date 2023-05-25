@@ -35,9 +35,9 @@ const ProductView = () => {
                 {productItem.map((item) => (
                     //Each child in a list should have a unique "key" prop
                     <li key={item._id}>
-                        <img src={`http://localhost:8080/uploads/default.jpeg`} alt='image' width="150" height="150" />
                         <div>{item.productName}</div>
                         <div>Price: {item.price}</div>
+                        <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" />
                     </li>
                 ))}
             </ul>
