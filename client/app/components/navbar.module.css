@@ -11,6 +11,10 @@
     font-size: 24px;
 }
 
+.logoLink {
+    text-decoration: none;
+}
+
 .navbarList {
     list-style-type: none;
     margin: 0;
