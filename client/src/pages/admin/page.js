@@ -8,7 +8,7 @@ const Admin = () => {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        setFile(file);
+        setFile(file || null);
     };
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -27,6 +27,7 @@ const Admin = () => {
 
             // Reset the form fields
             resetForm();
+            setFile(null);
             setSubmitting(false);
             alert('Form submitted successfully!');
         } catch (error) {

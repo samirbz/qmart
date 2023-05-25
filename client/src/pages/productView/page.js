@@ -16,7 +16,7 @@ const ProductView = () => {
             }
         };
 
-        // Fetch products initially
+        // Fetch products 
         fetchProducts();
 
         // Set up polling to fetch products every few seconds
@@ -33,7 +33,7 @@ const ProductView = () => {
             <h1>Product List</h1>
             <ul>
                 {productItem.map((item) => (
-                    //Each child in a list should have a unique "key" prop
+                    //Each child in a list should have a unique "key" prop - error if item_id is not set
                     <li key={item._id}>
                         <div>{item.productName}</div>
                         <div>Price: {item.price}</div>

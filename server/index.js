@@ -1,6 +1,5 @@
 const express = require('express');
 const dbConnect = require('./src/config/dbConnect');
-const multer = require('multer');
 const cors = require('cors')
 require('dotenv').config()
 const productRoute = require('./src/routes/productRoutes');
@@ -11,7 +10,7 @@ app.use(cors())
 
 const port = process.env.PORT;
 
-// Serve static files from the "uploads" folder
+// to access upload folder
 app.use('/uploads', express.static('uploads'));
 
 
