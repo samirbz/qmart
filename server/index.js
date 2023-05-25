@@ -1,9 +1,9 @@
 const express = require('express');
-const dbConnect = require('./config/dbConnect');
+const dbConnect = require('./src/config/dbConnect');
 const multer = require('multer');
 const cors = require('cors')
 require('dotenv').config()
-const productRoute = require('./routes/productRoutes');
+const productRoute = require('./src/routes/productRoutes');
 
 const app = express()
 app.use(express.json());
