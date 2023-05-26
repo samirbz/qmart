@@ -18,8 +18,8 @@ exports.createUser = async (req, res) => {
             password: hashedPassword, // Store the hashed password in the database
         });
 
-        const savedUser = await UserModel.create(newUser);
-        res.status(201).json(savedUser);
+        await UserModel.create(newUser);
+        res.status(201).json("Registered sucessfully");
     } catch (error) {
         console.error('Error creating User:', error);
         res.status(500).json({ error: 'Failed to create User' });
