@@ -1,9 +1,9 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const Admin = () => {
+const AdminRegister = () => {
 
     const formik = useFormik({
         initialValues: {
@@ -149,4 +149,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default AdminRegister;

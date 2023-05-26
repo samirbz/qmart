@@ -1,8 +1,10 @@
 'use client'
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const Register = () => {
+const RegisterUser = () => {
+
     const formik = useFormik({
         initialValues: {
             fullname: '',
@@ -20,7 +22,7 @@ const Register = () => {
                 .required('Confirm password is required')
                 .oneOf([Yup.ref('password'), null], 'Passwords must match')
         }),
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             try {
                 const response = await fetch('http://localhost:8080/user/create', {
                     method: 'POST',
@@ -33,6 +35,9 @@ const Register = () => {
                 if (response.ok) {
                     // Form submitted successfully, handle the response
                     console.log('Form submitted successfully');
+                    // Reset the form fields
+                    resetForm();
+                    alert('Form submitted successfully!');
                 } else {
                     // Handle error response
                     console.error('Form submission failed');
@@ -46,7 +51,7 @@ const Register = () => {
 
     return (
         <>
-            <h1>Register page</h1>
+            <h1>Admin Registration</h1>
             <form onSubmit={formik.handleSubmit}>
                 <input
                     type="text"
@@ -102,4 +107,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterUser;
