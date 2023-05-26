@@ -1,3 +1,4 @@
+
 import styles from "./navbar.module.css"
 import Link from "next/link"
 const Navbar = () => {
@@ -15,13 +16,13 @@ const Navbar = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/register">
+                        <Link href="/register/user">
                             Register
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/seller">
+                        <Link href="/register/admin">
                             Be a seller
                         </Link>
                     </li>

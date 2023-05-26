@@ -3,6 +3,7 @@ const dbConnect = require('./src/config/dbConnect');
 const cors = require('cors')
 require('dotenv').config()
 const productRoute = require('./src/routes/productRoutes');
+const usersRoute = require('./src/routes/usersRoutes')
 
 const app = express()
 app.use(express.json({ limit: '50mb' }));
@@ -20,6 +21,7 @@ dbConnect()
 
 // Route
 app.use('/product', productRoute)
+app.use('/user', usersRoute)
 
 // Start the server
 app.listen(port, () => {
