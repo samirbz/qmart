@@ -27,9 +27,9 @@ const RegisterUser = () => {
                 const response = await fetch('http://localhost:8080/user/create', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(values)
+                    body: JSON.stringify(values),
                 });
 
                 if (response.ok) {
@@ -37,9 +37,15 @@ const RegisterUser = () => {
                     console.log('Form submitted successfully');
                     // Reset the form fields
                     resetForm();
-                    alert('Form submitted successfully!');
+                    // Display success message from the server response
+                    const data = await response.json();
+                    alert(data.message);
+                } else if (response.status === 409) {
+                    // User already exists, handle the response
+                    const data = await response.json();
+                    alert(data.error);
                 } else {
-                    // Handle error response
+                    // Handle other error responses
                     console.error('Form submission failed');
                 }
             } catch (error) {

@@ -6,6 +6,13 @@ exports.createUser = async (req, res) => {
     try {
         const { fullname, businessName, email, phoneNumber, address, password } = req.body;
 
+        // Check if the phone number already exists
+        const existingUser = await UserModel.findOne({ phoneNumber });
+
+        if (existingUser) {
+            return res.status(409).json({ error: 'User already exists' });
+        }
+
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -19,7 +26,7 @@ exports.createUser = async (req, res) => {
         });
 
         await UserModel.create(newUser);
-        res.status(201).json("Registered sucessfully");
+        res.status(201).json({ message: 'Registered successfully' });
     } catch (error) {
         console.error('Error creating User:', error);
         res.status(500).json({ error: 'Failed to create User' });
