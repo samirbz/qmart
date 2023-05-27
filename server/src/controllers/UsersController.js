@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/User');
+const jwt = require('jsonwebtoken')
 
 
 // Create a new User
@@ -33,27 +33,23 @@ exports.registerUser = async (req, res) => {
 
 // Login Users
 exports.loginUser = async (req, res) => {
-    try {
-        const { phoneNumber, password } = req.body;
-        // Check if the user exists with the provided phone number
-        const user = await UserModel.findOne({ phoneNumber });
-        if (!user) {
-            return res.status(401).json({ error: 'Invalid phone number or password' });
-        }
+
+    const { phoneNumber, password } = req.body;
+    // Check if the user exists with the provided phone number
+    const user = await UserModel.findOne({ phoneNumber });
+    if (user) {
         // Compare the provided password with the hashed password in the database
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        if (!isPasswordValid) {
-            return res.status(401).json({ error: 'Invalid phone number or password' });
+        console.log(isPasswordValid)
+        if (isPasswordValid) {
+            // If the phone number and password are valid, generate a JWT token
+            const token = jwt.sign({ phoneNumber: phoneNumber }, process.env.SECRET_KEY);
+            res.json({ message: "Login Succcess", success: true, token: token, role: user.role, id: user._id })
+
+        } else {
+            res.json({ message: "Login Failed", success: false })
         }
-        // If the phone number and password are valid, generate a JWT token
-        const token = jwt.sign({ phoneNumber: phoneNumber }, process.env.SECRET_KEY);
-        // Set the token as a cookie or send it in the response header
-        res.cookie('token', token, { httpOnly: true });
-        // Redirect to the login page or send a success message
-        // res.redirect('/profile/user');
-        res.status(200).json({ message: 'Login successfull' });
-    } catch (error) {
-        console.error('Error logging in:', error);
-        res.status(500).json({ error: 'Failed to log in' });
+    } else {
+        res.json({ message: "user does not exist", success: false })
     }
-};
+}
