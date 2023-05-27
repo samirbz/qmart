@@ -22,7 +22,7 @@ const Navbar = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/register/admin">
+                        <Link href="/register/seller">
                             Be a seller
                         </Link>
                     </li>
