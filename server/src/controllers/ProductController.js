@@ -6,7 +6,12 @@ const upload = require('../middlewares/uploadMiddleware');
 exports.createProduct = async (req, res) => {
   try {
     const { productName, price } = req.body;
-    const imageName = req.file.filename; // Extract the filename from the uploaded file
+    let imageName = 'default.png'; // Set the default image name
+
+    if (req.file) {
+      // If a file is uploaded, extract the filename from the uploaded file
+      imageName = req.file.filename;
+    }
 
     const newProduct = await ProductModel.create({ productName, price, imageName });
 
@@ -16,6 +21,7 @@ exports.createProduct = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
 
 
 // GET product

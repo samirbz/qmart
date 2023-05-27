@@ -7,13 +7,18 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
-        // unique name
-        const uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
-        // get file extension
-        const fileExtension = file.originalname.split('.').pop();
-        // unique file name generation
-        const uniqueFileName = `${uniqueId}.${fileExtension}`;
-        cb(null, uniqueFileName);
+        if (!file) {
+            // If no file exists, send 'default.png' as the default file name
+            cb(null, 'default.png');
+        } else {
+            // unique name
+            const uniqueId = Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
+            // get file extension
+            const fileExtension = file.originalname.split('.').pop();
+            // unique file name generation
+            const uniqueFileName = `${uniqueId}.${fileExtension}`;
+            cb(null, uniqueFileName);
+        }
     }
 });
 
