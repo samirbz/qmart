@@ -1,4 +1,4 @@
-import ShopNav from "../components/ShopNav";
+import ShopNav from "../components/Nav/ShopNav";
 
 export const metadata = {
     title: 'Shop page',

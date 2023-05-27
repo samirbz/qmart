@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import styles from './add.module.css';
+import styles from './create.module.css';
 
-const Admin = () => {
+const Create = () => {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -66,4 +66,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default Create;
