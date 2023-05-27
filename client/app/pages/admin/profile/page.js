@@ -1,7 +1,7 @@
 const SuperAdmin = () => {
     return (
         <>
-            <h1>Super Admin page</h1>
+            <h1>Admin page</h1>
         </>
     )
 }

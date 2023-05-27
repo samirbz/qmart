@@ -1,6 +1,6 @@
 import Products from "./shop/page";
-
-const Home = () => {
+import UserDashboard from './pages/user/dashboard'
+const Main = () => {
     return (
         <>
             <Products />
@@ -8,4 +8,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Main;
