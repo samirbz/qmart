@@ -30,7 +30,7 @@ const AdminRegister = () => {
         }),
         onSubmit: async (values, { resetForm }) => {
             try {
-                const response = await fetch('http://localhost:8080/user/create', {
+                const response = await fetch('http://localhost:8080/user/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
