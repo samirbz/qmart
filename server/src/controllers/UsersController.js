@@ -6,7 +6,7 @@ const UserModel = require('../models/User');
 // Create a new User
 exports.registerUser = async (req, res) => {
     try {
-        const { fullname, businessName, email, phoneNumber, address, password } = req.body;
+        const { fullname, businessName, email, phoneNumber, address, password, role } = req.body;
         // Check if the phone number already exists
         const existingUser = await UserModel.findOne({ phoneNumber });
         if (existingUser) {
@@ -21,6 +21,7 @@ exports.registerUser = async (req, res) => {
             phoneNumber,
             address,
             password: hashedPassword, // Store the hashed password in the database
+            role,
         });
         await UserModel.create(newUser);
         res.status(201).json({ message: 'Registered successfully' });
