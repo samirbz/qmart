@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import styles from './admin.module.css';
+import styles from './add.module.css';
 
 const Admin = () => {
     const [file, setFile] = useState(null);
