@@ -49,7 +49,8 @@ exports.loginUser = async (req, res) => {
         // Set the token as a cookie or send it in the response header
         res.cookie('token', token, { httpOnly: true });
         // Redirect to the login page or send a success message
-        res.redirect('/profile/user');
+        // res.redirect('/profile/user');
+        res.status(200).json({ message: 'Login successfull' });
     } catch (error) {
         console.error('Error logging in:', error);
         res.status(500).json({ error: 'Failed to log in' });
