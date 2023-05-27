@@ -23,7 +23,8 @@ const Login = () => {
                     body: JSON.stringify(values),
                 });
                 const data = await response.json();
-                console.log(data); // Handle the response from the server
+                console.log(data);
+                alert("user page opened")
             } catch (error) {
                 console.error('Error logging in:', error);
                 // Handle any error that occurred during the login process

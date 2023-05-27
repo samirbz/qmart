@@ -1,6 +1,10 @@
+'use client'
+import { Provider } from 'react-redux'
 import Navbar from './components/Nav/MainNav'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { persistor, store } from './redux/store/page';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,9 +15,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Navbar />
+          </PersistGate>
+        </Provider>
         {children}</body>
     </html>
   )

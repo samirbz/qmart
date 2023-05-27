@@ -1,11 +1,10 @@
-import Products from "./shop/page";
-import UserDashboard from './pages/user/dashboard'
-const Main = () => {
+
+
+const Home = () => {
     return (
         <>
-            <Products />
+            <h1>Main page</h1>
         </>
-    );
-};
-
-export default Main;
+    )
+}
+export default Home;
