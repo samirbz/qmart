@@ -1,4 +1,4 @@
-const userDashboard = () => {
+const UserDashboard = () => {
     return (
         <>
             <h1>User Dashboard</h1>
@@ -6,4 +6,4 @@ const userDashboard = () => {
         </>
     )
 }
-export default userDashboard;
+export default UserDashboard;

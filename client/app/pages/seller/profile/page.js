@@ -1,8 +1,8 @@
-const Admin = () => {
+const Seller = () => {
     return (
         <>
-            <h1>Admin page</h1>
+            <h1>Seller page</h1>
         </>
     )
 }
-export default Admin
+export default Seller

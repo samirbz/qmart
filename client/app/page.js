@@ -1,10 +1,24 @@
-
+import UserDashboard from './pages/user/dashboard';
+import SellerDashboard from './pages/seller/dashboard';
+import AdminDashboard from './pages/admin/dashboard';
 
 const Home = () => {
-    return (
-        <>
-            <h1>Main page</h1>
-        </>
-    )
-}
+    const role = 'user';
+
+    const renderDashboard = () => {
+        switch (role) {
+            case 'user':
+                return <UserDashboard />;
+            case 'seller':
+                return <SellerDashboard />;
+            case 'admin':
+                return <AdminDashboard />;
+            default:
+                return null;
+        }
+    };
+
+    return <div>{renderDashboard()}</div>;
+};
+
 export default Home;
