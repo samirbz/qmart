@@ -2,8 +2,16 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserDetails } from '../../redux/reducerSlice/userSlice'
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+
+    const dispatch = useDispatch()
+    const { token } = useSelector(state => state.user)
+    const router = useRouter();
+
     const formik = useFormik({
         initialValues: {
             phoneNumber: '',
@@ -25,12 +33,17 @@ const Login = () => {
                 const data = await response.json();
                 console.log(data);
                 if (data.success) {
+                    router.push('/')
                     if (data.role == "user") {
                         alert("user login successful")
+                        dispatch(setUserDetails(data))
                     } else if (data.role == "seller") {
                         alert("seller login successful")
+                        dispatch(setUserDetails(data))
                     } else if (data.role === "admin") {
                         alert("admin login successfull")
+                        dispatch(setUserDetails(data))
+
                     }
                 } else {
                     alert('login failed')

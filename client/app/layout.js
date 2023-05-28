@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import Navbar from './components/Nav/MainNav';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import store from './redux/store';
-import Counter from './pages/counter/page';
+import { persistor, store } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,8 +18,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Provider store={store}>
-          <Navbar />
-          {children}
+          <PersistGate loading={null} persistor={persistor}>
+            <Navbar />
+            {children}
+          </PersistGate>
         </Provider>
       </body>
     </html>

@@ -1,25 +1,24 @@
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import counterReducer from '../reducerSlice/counterSlice';
+import userReducer from '../reducerSlice/userSlice';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+import logger from 'redux-logger';
 
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['user']
+}
 
-const counterSlice = createSlice({
-    name: 'counter',
-    initialState: { value: 0 },
-    reducers: {
-        increment: (state) => {
-            state.value += 1;
-        },
-        decrement: (state) => {
-            state.value -= 1;
-        },
-    },
-});
+const reducer = combineReducers({ user: userReducer, counter: counterReducer })
+const persistedReducer = persistReducer(persistConfig, reducer)
 
-export const { increment, decrement } = counterSlice.actions;
 
 export const store = configureStore({
-    reducer: {
-        counter: counterSlice.reducer,
-    },
+    reducer: persistedReducer,
+    middleware: [logger]
+
 });
 
-export default store
+export const persistor = persistStore(store)
