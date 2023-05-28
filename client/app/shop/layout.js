@@ -9,7 +9,7 @@ const ShopLayout = ({ children }) => {
     return (
         <div>
             {/* You can put component that you want to just show in shop endpoint */}
-            <ShopNav />
+
             {children}
         </div>
     )

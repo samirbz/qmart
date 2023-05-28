@@ -1,6 +1,12 @@
 import styles from "./shopNav.module.css"
 import Link from "next/link"
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from "@/app/redux/reducerSlice/userSlice";
 const AdminNav = () => {
+    const dispatch = useDispatch()
+    const handleLogout = () => {
+        dispatch(logout())
+    }
     return (
         <>
             <nav className={styles.navbar}>
@@ -15,9 +21,13 @@ const AdminNav = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/shop/products">
-                            Products
+                        <Link href="/shop/myAccount">
+                            My Account
                         </Link>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <Link href="/" onClick={handleLogout}>Logout</Link>
                     </li>
                 </ul>
             </nav>
