@@ -25,7 +25,13 @@ const Login = () => {
                 const data = await response.json();
                 console.log(data);
                 if (data.success) {
-                    alert("login successful")
+                    if (data.role == "user") {
+                        alert("user login successful")
+                    } else if (data.role == "seller") {
+                        alert("seller login successful")
+                    } else if (data.role === "admin") {
+                        alert("admin login successfull")
+                    }
                 } else {
                     alert('login failed')
                 }
