@@ -1,8 +1,6 @@
-
-import styles from "./mainNav.module.css"
+import styles from "./shopNav.module.css"
 import Link from "next/link"
-
-const MainNav = () => {
+const UserNav = () => {
     return (
         <>
             <nav className={styles.navbar}>
@@ -11,20 +9,14 @@ const MainNav = () => {
                 <button>Search</button>
                 <ul className={styles.navbarList}>
                     <li>
-                        <Link href="/login">
-                            Login
+                        <Link href="/shop/cart">
+                            Cart
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/register/user">
-                            Register
-                        </Link>
-                    </li>
-                    <li>|</li>
-                    <li>
-                        <Link href="/register/seller">
-                            Be a seller
+                        <Link href="/shop/products">
+                            Products
                         </Link>
                     </li>
                 </ul>
@@ -32,4 +24,4 @@ const MainNav = () => {
         </>
     )
 }
-export default MainNav
+export default UserNav
