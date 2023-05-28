@@ -44,7 +44,8 @@ exports.loginUser = async (req, res) => {
         if (isPasswordValid) {
             // If the phone number and password are valid, generate a JWT token
             const token = jwt.sign({ phoneNumber: phoneNumber }, process.env.SECRET_KEY);
-            res.json({ message: "Login Succcess", success: true, token: token, role: user.role, id: user._id })
+            //send any data you need from database so you can access from frontend and can use in redux
+            res.json({ message: "Login Succcess", success: true, token: token, role: user.role, id: user._id, fullname: user.fullname })
 
         } else {
             res.json({ message: "Login Failed", success: false })

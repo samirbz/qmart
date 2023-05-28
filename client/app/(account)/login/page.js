@@ -34,17 +34,8 @@ const Login = () => {
                 console.log(data);
                 if (data.success) {
                     router.push('/')
-                    if (data.role == "user") {
-                        alert("user login successful")
-                        dispatch(setUserDetails(data))
-                    } else if (data.role == "seller") {
-                        alert("seller login successful")
-                        dispatch(setUserDetails(data))
-                    } else if (data.role === "admin") {
-                        alert("admin login successfull")
-                        dispatch(setUserDetails(data))
-
-                    }
+                    // this will setUserDetails values to data values which comes from data base fetchi user/login so router.push('/') get neccessary token, role, etc
+                    dispatch(setUserDetails(data))
                 } else {
                     alert('login failed')
                 }

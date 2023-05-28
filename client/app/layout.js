@@ -1,10 +1,10 @@
 'use client';
 import { Provider } from 'react-redux';
-import Navbar from './components/Nav/MainNav';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { persistor, store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import Navbar from './components/Nav/MainNav';
 
 const inter = Inter({ subsets: ['latin'] });
 
