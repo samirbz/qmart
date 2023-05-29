@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "@/app/redux/reducerSlice/userSlice";
 const SellerNav = () => {
     const dispatch = useDispatch()
+    const { fullname } = useSelector(state => state.user)
+
     const handleLogout = () => {
         dispatch(logout())
     }
@@ -14,9 +16,14 @@ const SellerNav = () => {
                 <input placeholder="Search here"></input>
                 <button>Search</button>
                 <ul className={styles.navbarList}>
+                    <li>|</li>
                     <li>
-                        <Link href="/shop/cart">
-                            Cart
+                        hi,<Link href="/" >{fullname}</Link>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <Link href="/products/create">
+                            Add product
                         </Link>
                     </li>
                     <li>|</li>
