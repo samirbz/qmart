@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import styles from './create.module.css';
 
-const Create = () => {
+const ProductCreate = () => {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (e) => {
@@ -38,7 +38,7 @@ const Create = () => {
 
     return (
         <>
-            <h1>Admin page</h1>
+            <h1>Add product</h1>
             <Formik
                 initialValues={{
                     productName: '',
@@ -66,4 +66,4 @@ const Create = () => {
     );
 };
 
-export default Create;
+export default ProductCreate;
