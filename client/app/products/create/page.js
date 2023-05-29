@@ -19,6 +19,7 @@ const ProductCreate = () => {
             formData.append('productName', values.productName);
             formData.append('price', values.price);
 
+
             // Send the form data to the server
             await fetch('http://localhost:8080/product/create', {
                 method: 'POST',

@@ -1,5 +1,7 @@
-import ProductCreate from '@/app/products/create/page';
+'use client'
 import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link';
+import MyProducts from '@/app/products/read/page';
 
 const SellerDashboard = () => {
 
@@ -8,7 +10,11 @@ const SellerDashboard = () => {
     return (
         <>
             <h1>Seller Dashboard, hello {fullname}</h1>
-            <ProductCreate />
+            <Link href="/products/create">
+                Add product
+            </Link>
+            <h1>Your products</h1>
+            <MyProducts />
         </>
     )
 }
