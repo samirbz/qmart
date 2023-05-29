@@ -20,7 +20,7 @@ const ProductCreate = () => {
             formData.append('productName', values.productName);
             formData.append('price', values.price);
             formData.append('phoneNumber', phoneNumber);
-            formData.append('productDetail', productDetail)
+            formData.append('productDetail', values.productDetail)
 
             // Send the form data to the server with headers
             await fetch('http://localhost:8080/product/create', {

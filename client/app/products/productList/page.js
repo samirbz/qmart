@@ -39,6 +39,7 @@ const Products = () => {
                         <a href={`/products/productDetails`}>
                             <img src={`http://localhost:8080/uploads/${item.imageName}`} alt="image" width="220" height="150" />
                         </a>
+                        <p>{item.productDetail}</p>
                     </li>
                 ))}
             </ul>
