@@ -1,10 +1,10 @@
 'use client'
 
 import { useSelector } from 'react-redux'
-import MainNav from './MainNav'
-import AdminNav from './AdminNav'
-import SellerNav from './SellerNav'
-import UserNav from './UserNav'
+import MainNav from './Main'
+import AdminNav from './Admin'
+import SellerNav from './Seller'
+import UserNav from './User'
 
 const Nav = () => {
     const { token, role } = useSelector(state => state.user)

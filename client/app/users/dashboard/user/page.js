@@ -1,3 +1,4 @@
+import Products from '@/app/components/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UserDashboard = () => {
@@ -6,7 +7,7 @@ const UserDashboard = () => {
 
     return (
         <>
-            <h1>User Dashboard, hello {fullname}</h1>
+            <Products />
         </>
     )
 }

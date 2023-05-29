@@ -1,8 +1,12 @@
-
-import styles from "./mainNav.module.css"
+import styles from "../nav.module.css"
 import Link from "next/link"
-
-const MainNav = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from "@/app/redux/reducerSlice/userSlice";
+const AdminNav = () => {
+    const dispatch = useDispatch()
+    const handleLogout = () => {
+        dispatch(logout())
+    }
     return (
         <>
             <nav className={styles.navbar}>
@@ -11,25 +15,23 @@ const MainNav = () => {
                 <button>Search</button>
                 <ul className={styles.navbarList}>
                     <li>
-                        <Link href="/login">
-                            Login
+                        <Link href="/shop/cart">
+                            Cart
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/register/user">
-                            Register
+                        <Link href="/shop/myAccount">
+                            My Account
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/register/seller">
-                            Be a seller
-                        </Link>
+                        <Link href="/" onClick={handleLogout}>Logout</Link>
                     </li>
                 </ul>
             </nav>
         </>
     )
 }
-export default MainNav
+export default AdminNav
