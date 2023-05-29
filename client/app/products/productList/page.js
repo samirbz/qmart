@@ -18,7 +18,7 @@ const Products = () => {
         // Fetch products 
         fetchProducts();
 
-        // Set up polling to fetch products every few seconds
+        // Set up polling to fetch products every few seconds -- pending...
         const interval = setInterval(fetchProducts, 5000);
 
         // Clean up interval on component unmount
@@ -32,18 +32,19 @@ const Products = () => {
             <h1>Product List</h1>
             <ul>
                 {productItem.map((item) => (
-                    //Each child in a list should have a unique "key" prop - error if item_id is not set
                     <li key={item._id}>
-                        <div>{item.productName}</div>
-                        <div>Price: {item.price}</div>
-                        <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" /><br />
-                        <button>Add to cart</button>
-                        <button>Buy it</button>
+                        <div><h3>{item.productName}</h3></div>
+                        <div style={{ color: 'red' }}>Price: {item.price}</div>
+                        {/* <a href={`/productDetails/${item._id}`}> */}
+                        <a href={`/products/productDetails`}>
+                            <img src={`http://localhost:8080/uploads/${item.imageName}`} alt="image" width="220" height="150" />
+                        </a>
                     </li>
                 ))}
             </ul>
         </>
     );
+
 };
 
 export default Products;

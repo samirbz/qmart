@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 
 const Login = () => {
 
-    const dispatch = useDispatch()
-    const { token } = useSelector(state => state.user)
+    const dispatch = useDispatch();
+    const { token } = useSelector(state => state.user);
     const router = useRouter();
 
     const formik = useFormik({
@@ -27,17 +27,18 @@ const Login = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` // Include the token in the request headers
                     },
                     body: JSON.stringify(values),
                 });
+
                 const data = await response.json();
-                console.log(data);
+
                 if (data.success) {
-                    router.push('/')
-                    // this will setUserDetails values to data values which comes from data base fetchi user/login so router.push('/') get neccessary token, role, etc
-                    dispatch(setUserDetails(data))
+                    dispatch(setUserDetails(data));
+                    router.push('/');
                 } else {
-                    alert('login failed')
+                    alert('Login failed');
                 }
             } catch (error) {
                 console.error('Error logging in:', error);

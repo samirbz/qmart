@@ -15,7 +15,10 @@ const productSchema = new mongoose.Schema({
     },
     imageName: {
         type: String,
-    }
+    },
+    productDetail: {
+        type: String,
+    },
 })
 
 const Product = mongoose.model('Product', productSchema)

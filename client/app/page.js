@@ -4,7 +4,7 @@ import SellerDashboard from './users/dashboard/seller/page';
 import AdminDashboard from './users/dashboard/admin/page';
 
 import { useSelector } from 'react-redux'
-import Products from './components/ProductList';
+import Products from './products/productList/page';
 
 const Home = () => {
     const { token, role } = useSelector(state => state.user)
@@ -32,7 +32,6 @@ const Home = () => {
 
     return (
         <div>
-
             {token ? <Dashboard /> : <Auth />}
         </div>
     )

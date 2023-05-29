@@ -39,8 +39,8 @@ const MyProducts = () => {
                     item.phoneNumber === phoneNumber && (
                         <li key={item._id}>
                             <div>{item.productName}</div>
-                            <div>Price: {item.price}</div>
-                            <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" /><br />
+                            <div style={{ color: 'red' }}>Price: {item.price}</div>
+                            <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="220" height="150" /><br />
                             <button>Sold</button>
                             <button>Edit</button>
                             <button>Delete</button>

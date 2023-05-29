@@ -20,6 +20,7 @@ const ProductCreate = () => {
             formData.append('productName', values.productName);
             formData.append('price', values.price);
             formData.append('phoneNumber', phoneNumber);
+            formData.append('productDetail', productDetail)
 
             // Send the form data to the server with headers
             await fetch('http://localhost:8080/product/create', {
@@ -44,6 +45,7 @@ const ProductCreate = () => {
                 initialValues={{
                     productName: '',
                     price: '',
+                    productDetail: '',
                 }}
                 onSubmit={handleSubmit}
             >
@@ -57,6 +59,17 @@ const ProductCreate = () => {
                         <label htmlFor="price">Price</label>
                         <br />
                         <Field type="number" id="price" name="price" />
+                    </div>
+                    <div>
+                        <label htmlFor="productDetail">Product Detail</label>
+                        <br />
+                        <Field
+                            style={{ display: 'block', height: '4em' }}
+                            type="text"
+                            id="productDetail"
+                            name="productDetail"
+                            component="textarea"
+                        />
                     </div>
                     <input type="file" onChange={handleFileChange} />
                     <br />
