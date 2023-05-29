@@ -1,11 +1,13 @@
 'use client'
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+
 import styles from './create.module.css';
 
 const ProductCreate = () => {
     const [file, setFile] = useState(null);
-
+    const { phoneNumber } = useSelector(state => state.user)
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setFile(file || null);
@@ -13,20 +15,18 @@ const ProductCreate = () => {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-            // Create a new FormData object
             const formData = new FormData();
             formData.append('file', file);
             formData.append('productName', values.productName);
             formData.append('price', values.price);
+            formData.append('phoneNumber', phoneNumber);
 
-
-            // Send the form data to the server
+            // Send the form data to the server with headers
             await fetch('http://localhost:8080/product/create', {
                 method: 'POST',
                 body: formData,
             });
 
-            // Reset the form fields
             resetForm();
             setFile(null);
             setSubmitting(false);

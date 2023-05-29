@@ -5,9 +5,9 @@ const productSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    sellerPhoneNumber: {
+    phoneNumber: {
         type: String,
-        require:true
+        require: true
     },
     price: {
         type: Number,

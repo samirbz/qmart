@@ -5,7 +5,7 @@ const upload = require('../middlewares/uploadMiddleware');
 // POST product
 exports.createProduct = async (req, res) => {
   try {
-    const { productName, price } = req.body;
+    const { productName, price, phoneNumber } = req.body;
     let imageName = 'default.png'; // Set the default image name
 
     if (req.file) {
@@ -13,7 +13,7 @@ exports.createProduct = async (req, res) => {
       imageName = req.file.filename;
     }
 
-    const newProduct = await ProductModel.create({ productName, price, imageName });
+    const newProduct = await ProductModel.create({ productName, price, imageName, phoneNumber });
 
     res.status(201).json(newProduct);
   } catch (error) {
