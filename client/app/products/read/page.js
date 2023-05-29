@@ -1,8 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const MyProducts = () => {
     const [productItem, setProductItem] = useState([]);
+    const { phoneNumber } = useSelector(state => state.user)
+
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -31,15 +35,17 @@ const MyProducts = () => {
         <>
             <ul>
                 {productItem.map((item) => (
-                    //Each child in a list should have a unique "key" prop - error if item_id is not set
-                    <li key={item._id}>
-                        <div>{item.productName}</div>
-                        <div>Price: {item.price}</div>
-                        <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" /><br />
-                        <button>Sold</button>
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </li>
+                    // Only show the <li> tag if item.phoneNumber matches the login phoneNumber
+                    item.phoneNumber === phoneNumber && (
+                        <li key={item._id}>
+                            <div>{item.productName}</div>
+                            <div>Price: {item.price}</div>
+                            <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="150" height="150" /><br />
+                            <button>Sold</button>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </li>
+                    )
                 ))}
             </ul>
         </>
