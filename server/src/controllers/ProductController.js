@@ -23,7 +23,6 @@ exports.createProduct = async (req, res) => {
 }
 
 
-
 // GET product
 exports.showProducts = async (req, res) => {
   try {
@@ -34,24 +33,4 @@ exports.showProducts = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' })
   }
 }
-
-// Get product details
-exports.getProductDetail = async (req, res) => {
-  try {
-    const productId = req.params.id;
-
-    // Fetch product details from MongoDB based on the productId
-    const product = await ProductModel.findById(productId);
-
-    if (!product) {
-      return res.status(404).json({ error: 'Product not found' });
-    }
-
-    res.json(product)
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
 
