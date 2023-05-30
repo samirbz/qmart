@@ -1,10 +1,10 @@
 'use client'
-import UserDashboard from './users/dashboard/user/page';
-import SellerDashboard from './users/dashboard/seller/page';
-import AdminDashboard from './users/dashboard/admin/page';
-
 import { useSelector } from 'react-redux'
-import Products from './products/productList/page';
+import Products from './components/Product/ProductList';
+import SellerDashboard from './seller/products';
+import UserDashboard from './user';
+import AdminDashboard from './admin/products';
+
 
 const Home = () => {
     const { token, role } = useSelector(state => state.user)
@@ -22,17 +22,11 @@ const Home = () => {
         }
     };
 
-    const Auth = () => {
-        return (
-            <Products />
-        )
-    }
-
     console.log(token)
 
     return (
         <div>
-            {token ? <Dashboard /> : <Auth />}
+            {token ? <Dashboard /> : <Products />}
         </div>
     )
 }

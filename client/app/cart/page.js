@@ -1,3 +1,4 @@
+//shopping cart page
 const Cart = () => {
     return (
         <>

@@ -1,17 +1,14 @@
-import styles from "../nav.module.css"
+import styles from "./nav.module.css"
 import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "@/app/redux/reducerSlice/userSlice";
-
-
-const UserNav = () => {
+const SellerNav = () => {
+    const dispatch = useDispatch()
     const { fullname } = useSelector(state => state.user)
 
-    const dispatch = useDispatch()
     const handleLogout = () => {
         dispatch(logout())
     }
-
     return (
         <>
             <nav className={styles.navbar}>
@@ -25,13 +22,13 @@ const UserNav = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="users/cart">
-                            Cart
+                        <Link href="/products/create">
+                            Add product
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/users/account">
+                        <Link href="/account">
                             My Account
                         </Link>
                     </li>
@@ -44,4 +41,4 @@ const UserNav = () => {
         </>
     )
 }
-export default UserNav
+export default SellerNav

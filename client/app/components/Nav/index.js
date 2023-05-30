@@ -1,10 +1,9 @@
 'use client'
-
 import { useSelector } from 'react-redux'
-import MainNav from './Main'
-import AdminNav from './Admin'
-import SellerNav from './Seller'
-import UserNav from './User'
+import MainNav from './MainNav'
+import AdminNav from './AdminNav'
+import SellerNav from './SellerNav'
+import UserNav from './UserNav'
 
 const Nav = () => {
     const { token, role } = useSelector(state => state.user)
@@ -22,18 +21,10 @@ const Nav = () => {
         }
     };
 
-    const Mnav = () => {
-        return (
-            <MainNav />
-        )
-    }
-
     return (
         <div>
-
-            {token ? <NavItem /> : <Mnav />}
+            {token ? <NavItem /> : <MainNav />}
         </div>
     )
 }
-
 export default Nav;

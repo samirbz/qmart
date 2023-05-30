@@ -1,6 +1,6 @@
 'use client'
 import { useSelector } from "react-redux";
-const MyAccount = () => {
+const AccountDetail = () => {
     const { fullname, phoneNumber } = useSelector(state => state.user)
     return (
         <>
@@ -10,4 +10,4 @@ const MyAccount = () => {
         </>
     )
 }
-export default MyAccount;
+export default AccountDetail;

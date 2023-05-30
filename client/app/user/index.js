@@ -1,5 +1,5 @@
 'use client'
-import Products from '@/app/products/productList/page';
+import Products from '@/app/components/Product/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UserDashboard = () => {

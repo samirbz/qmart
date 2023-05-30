@@ -1,5 +1,7 @@
+// Seller product management page
 'use client'
-import MyProducts from '@/app/products/read/page';
+
+import MyProducts from "@/app/products/read/page";
 
 const SellerDashboard = () => {
 
