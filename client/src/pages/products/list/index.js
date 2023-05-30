@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 const Products = () => {
     const [productItem, setProductItem] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -26,6 +28,10 @@ const Products = () => {
         };
     }, []);
 
+    const handleProductDetail = (productId) => {
+        router.push(`/products/${productId}`);
+    };
+
     return (
         <>
             <h1>Product List</h1>
@@ -35,9 +41,9 @@ const Products = () => {
                         <div><h3>{item.productName}</h3></div>
                         <div style={{ color: 'red' }}>Price: {item.price}</div>
                         {/* <a href={`/productDetails/${item._id}`}> */}
-                        <a href={"/products/detail"}>
-                            <img src={`http://localhost:8080/uploads/${item.imageName}`} alt="image" width="220" height="150" />
-                        </a>
+
+                        <img src={`http://localhost:8080/uploads/${item.imageName}`} onClick={() => handleProductDetail(item._id)} alt="image" width="220" height="150" />
+
                         <p>{item.productDetail}</p>
                     </li>
                 ))}
