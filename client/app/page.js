@@ -1,6 +1,6 @@
 'use client'
 import { useSelector } from 'react-redux'
-import Products from './components/Product/ProductList';
+import Products from './products/list/page';
 import SellerDashboard from './seller/products';
 import UserDashboard from './user';
 import AdminDashboard from './admin/products';
