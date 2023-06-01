@@ -40,8 +40,6 @@ const Products = () => {
                     <li key={item._id}>
                         <div><h3>{item.productName}</h3></div>
                         <div style={{ color: 'red' }}>Price: {item.price}</div>
-                        {/* <a href={`/productDetails/${item._id}`}> */}
-
                         <img src={`http://localhost:8080/uploads/${item.imageName}`} onClick={() => handleProductDetail(item._id)} alt="image" width="220" height="150" />
                     </li>
                 ))}

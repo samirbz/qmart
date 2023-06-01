@@ -11,3 +11,15 @@ exports.addToCart = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+// Show cart items for a specific phone number
+exports.showCart = async (req, res) => {
+    try {
+        const phoneNumber = req.query.phoneNumber;
+        const cartItems = await cartModel.find({ phoneNumber: phoneNumber });
+        res.json(cartItems);
+    } catch (error) {
+        console.error('Error fetching cart items:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

@@ -25,13 +25,13 @@ const UserNav = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="pages/cart">
+                        <Link href="/cart">
                             Cart
                         </Link>
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/pages/account">
+                        <Link href="/account">
                             My Account
                         </Link>
                     </li>

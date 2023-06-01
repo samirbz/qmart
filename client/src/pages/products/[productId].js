@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const router = useRouter();
     const { productId } = router.query;
+
+    const { phoneNumber } = useSelector(state => state.user); // Replace 'user' with the actual slice name
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -30,7 +33,7 @@ const ProductDetail = () => {
         try {
             const body = {
                 productId: product._id, // Include the product ID
-                phoneNumber: product.phoneNumber // Include the phone number
+                phoneNumber: phoneNumber // Include the phone number
             };
             const response = await fetch('http://localhost:8080/cart/add', {
                 method: 'POST',
@@ -52,14 +55,13 @@ const ProductDetail = () => {
                 alert(data.error);
             } else {
                 // Handle other error responses
-                console.error('Prouduct add to cart failed');
+                console.error('Product add to cart failed');
             }
         } catch (error) {
             // Handle network or server errors
             console.error('An error occurred:', error);
         }
     }
-
 
     return (
         <>
