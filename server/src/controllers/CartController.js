@@ -23,3 +23,23 @@ exports.showCart = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+// Delete cart items
+exports.deleteCart = async (req, res) => {
+    const itemId = req.params.id;
+
+    try {
+        // Find and remove the cart item from the database based on productId
+        const deletedItem = await cartModel.deleteOne({ productId: itemId });
+
+        if (deletedItem.deletedCount === 0) {
+            return res.status(404).json({ error: 'Cart item not found' });
+        }
+
+        res.status(200).json({ message: 'Cart item deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting cart item:', error);
+        res.status(500).json({ error: 'An error occurred while deleting the cart item' });
+    }
+};
+

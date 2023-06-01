@@ -46,11 +46,25 @@ const Cart = () => {
         return productItems.find(item => item._id === productId);
     };
 
+    const handleRemoveCartItem = async (itemId) => {
+        try {
+            // Send a request to remove the item from the cart
+            await fetch(`http://localhost:8080/cart/delete/${itemId}`, {
+                method: 'DELETE',
+            });
+
+            // Update the cartItems state by removing the item with matching productId
+            setCartItems(prevItems => prevItems.filter(item => item.productId !== itemId));
+        } catch (error) {
+            console.error('Error removing cart item:', error);
+        }
+    };
+
+
+
     return (
         <>
-            <h1>Cart page</h1>
-            <p>Phone Number: {phoneNumber}</p>
-            <h2>Cart Items</h2>
+            <h1>Cart Items</h1>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
@@ -64,6 +78,7 @@ const Cart = () => {
                                     <div style={{ color: 'red' }}>Price: {product.price}</div>
                                     <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="220" height="150" /><br />
                                     <button>Buy Now</button>
+                                    <button onClick={() => handleRemoveCartItem(item.productId)}>Remove</button>
                                 </li>
                             );
                         }
