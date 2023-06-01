@@ -7,7 +7,7 @@ const ProductDetail = () => {
     const router = useRouter();
     const { productId } = router.query;
 
-    const { phoneNumber } = useSelector(state => state.user); // Replace 'user' with the actual slice name
+    const { phoneNumber } = useSelector(state => state.user);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -32,8 +32,8 @@ const ProductDetail = () => {
     const handleAddCart = async () => {
         try {
             const body = {
-                productId: product._id, // Include the product ID
-                phoneNumber: phoneNumber // Include the phone number
+                productId: product._id,
+                phoneNumber: phoneNumber
             };
             const response = await fetch('http://localhost:8080/cart/add', {
                 method: 'POST',
@@ -44,21 +44,17 @@ const ProductDetail = () => {
             });
 
             if (response.ok) {
-                // Form submitted successfully, handle the response
                 console.log('product added to cart');
 
                 const data = await response.json();
-                alert(data.message);
+                alert("product added to cart");
             } else if (response.status === 409) {
-                // User already exists, handle the response
                 const data = await response.json();
                 alert(data.error);
             } else {
-                // Handle other error responses
                 console.error('Product add to cart failed');
             }
         } catch (error) {
-            // Handle network or server errors
             console.error('An error occurred:', error);
         }
     }
