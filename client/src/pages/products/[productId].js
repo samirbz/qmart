@@ -7,7 +7,7 @@ const ProductDetail = () => {
     const router = useRouter();
     const { productId } = router.query;
 
-    const { phoneNumber } = useSelector(state => state.user);
+    const { phoneNumber, token } = useSelector(state => state.user);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -30,32 +30,37 @@ const ProductDetail = () => {
 
     // add to cart
     const handleAddCart = async () => {
-        try {
-            const body = {
-                productId: product._id,
-                phoneNumber: phoneNumber
-            };
-            const response = await fetch('http://localhost:8080/cart/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(body),
-            });
+        if (token) {
+            try {
+                const body = {
+                    productId: product._id,
+                    phoneNumber: phoneNumber
+                };
+                const response = await fetch('http://localhost:8080/cart/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(body),
+                });
 
-            if (response.ok) {
-                console.log('product added to cart');
+                if (response.ok) {
+                    console.log('product added to cart');
 
-                const data = await response.json();
-                alert("product added to cart");
-            } else if (response.status === 409) {
-                const data = await response.json();
-                alert(data.error);
-            } else {
-                console.error('Product add to cart failed');
+                    const data = await response.json();
+                    alert("product added to cart");
+                } else if (response.status === 409) {
+                    const data = await response.json();
+                    alert(data.error);
+                } else {
+                    console.error('Product add to cart failed');
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
             }
-        } catch (error) {
-            console.error('An error occurred:', error);
+        } else {
+            alert("Please login first, to add to cart")
+            router.push('/login')
         }
     }
 
