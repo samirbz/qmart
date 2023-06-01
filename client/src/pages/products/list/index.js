@@ -43,8 +43,6 @@ const Products = () => {
                         {/* <a href={`/productDetails/${item._id}`}> */}
 
                         <img src={`http://localhost:8080/uploads/${item.imageName}`} onClick={() => handleProductDetail(item._id)} alt="image" width="220" height="150" />
-
-                        <p>{item.productDetail}</p>
                     </li>
                 ))}
             </ul>
