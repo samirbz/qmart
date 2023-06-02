@@ -6,11 +6,12 @@ import styles from './create.module.css';
 
 const ProductCreate = () => {
     const [file, setFile] = useState(null);
-    const { phoneNumber } = useSelector(state => state.user)
+    const { phoneNumber, businessName } = useSelector(state => state.user)
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setFile(file || null);
     };
+
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
@@ -19,7 +20,8 @@ const ProductCreate = () => {
             formData.append('productName', values.productName);
             formData.append('price', values.price);
             formData.append('phoneNumber', phoneNumber);
-            formData.append('productDetail', values.productDetail)
+            formData.append('businessName', businessName);
+            formData.append('productDetail', values.productDetail);
 
             // Send the form data to the server with headers
             await fetch('http://localhost:8080/product/create', {

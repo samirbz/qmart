@@ -5,7 +5,8 @@ const initialState = {
     role: '',
     id: '',
     fullname: '',
-    phoneNumber:'',
+    phoneNumber: '',
+    businessName: '',
 
 };
 
@@ -14,10 +15,10 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUserDetails: (state, action) => {
-            const { token, role, id, fullname,phoneNumber } = action.payload
+            const { token, role, id, fullname, phoneNumber, businessName } = action.payload
             return {
                 ...state,
-                token, id, role, fullname,phoneNumber,
+                token, id, role, fullname, phoneNumber, businessName
             }
         },
         logout: (state, action) => {

@@ -9,6 +9,7 @@ const ProductDetail = () => {
 
     const { phoneNumber, token, fullname } = useSelector(state => state.user);
 
+    // fetching product 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -23,6 +24,23 @@ const ProductDetail = () => {
         // Fetch product details
         fetchProduct();
     }, [productId]);
+
+    // fetching seller detail
+    useEffect(() => {
+        const fetchSellerDetail = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/product/detail/${productId}`);
+                const data = await response.json();
+                setProduct(data);
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            }
+        };
+
+        // Fetch product details
+        fetchSellerDetail();
+    }, [productId]);
+
 
     if (!product) {
         return <p>Loading...</p>;
@@ -109,6 +127,8 @@ const ProductDetail = () => {
                 <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="220" height="150" />
                 <p>{product.productDetail}</p>
                 <h2 style={{ color: 'red' }}>Rs. {product.price}</h2>
+                <p>Seller phonenumber:{product.phoneNumber}</p>
+                <p>Seller: {product.businessName}</p>
                 <button onClick={handleBuy}>Buy Now</button>
                 <button onClick={handleAddCart}>Add to Cart</button>
             </div>

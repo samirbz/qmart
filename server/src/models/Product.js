@@ -19,6 +19,10 @@ const productSchema = new mongoose.Schema({
     productDetail: {
         type: String,
     },
+    businessName: {
+        type: String,
+        require: true
+    }
 })
 
 const Product = mongoose.model('Product', productSchema)

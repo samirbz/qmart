@@ -34,9 +34,10 @@ exports.registerUser = async (req, res) => {
 // Login Users
 exports.loginUser = async (req, res) => {
 
-    const { phoneNumber, password } = req.body;
+    const { phoneNumber, password, businessName } = req.body;
     // Check if the user exists with the provided phone number
     const user = await UserModel.findOne({ phoneNumber });
+ 
     if (user) {
         // Compare the provided password with the hashed password in the database
         const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -45,7 +46,7 @@ exports.loginUser = async (req, res) => {
             // If the phone number and password are valid, generate a JWT token
             const token = jwt.sign({ phoneNumber: phoneNumber }, process.env.SECRET_KEY);
             //send any data you need from database so you can access from frontend and can use in redux
-            res.json({ message: "Login Succcess", success: true, token: token, role: user.role, id: user._id, fullname: user.fullname, phoneNumber:user.phoneNumber })
+            res.json({ message: "Login Succcess", success: true, token: token, role: user.role, id: user._id, fullname: user.fullname, phoneNumber: user.phoneNumber, businessName: user.businessName })
 
         } else {
             res.json({ message: "Login Failed", success: false })

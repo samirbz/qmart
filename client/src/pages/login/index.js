@@ -15,6 +15,7 @@ const Login = () => {
         initialValues: {
             phoneNumber: '',
             password: '',
+            businessName:'',
         },
         validationSchema: Yup.object({
             phoneNumber: Yup.string().required('Phone number is required'),
