@@ -78,7 +78,7 @@ exports.updateProduct = async (req, res) => {
     const { id } = req.params;
     const { productName, price, productDetail } = req.body;
 
-    // let imageName = ''; // Set the default image name
+    let imageName = req.body.imageName; // Set the default image name
 
     if (req.file) {
       // If a file is uploaded, extract the filename from the uploaded file

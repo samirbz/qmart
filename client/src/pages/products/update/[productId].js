@@ -25,7 +25,7 @@ const ProductUpdate = () => {
                 const response = await fetch(`http://localhost:8080/product/list/${productId}`)
                 const data = await response.json();
                 setInitialValues(data)
-                setFile(data.imageName)
+
             } catch (error) {
                 console.error('Error fetching product details:', error);
             }
