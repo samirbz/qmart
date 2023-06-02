@@ -2,8 +2,6 @@ import { useSelector } from 'react-redux'
 import Products from './products/list';
 import SellerDashboard from './seller/products';
 import UserDashboard from './user';
-import AdminDashboard from './admin/products';
-
 
 const Home = () => {
   const { token, role } = useSelector(state => state.user)
@@ -14,8 +12,6 @@ const Home = () => {
         return <UserDashboard />;
       case 'seller':
         return <SellerDashboard />;
-      case 'admin':
-        return <AdminDashboard />;
       default:
         return null;
     }

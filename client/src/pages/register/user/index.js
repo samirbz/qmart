@@ -10,7 +10,7 @@ const RegisterUser = () => {
             phoneNumber: '',
             password: '',
             confirmPassword: '',
-            role:'',
+            role: '',
         },
         validationSchema: Yup.object({
             fullname: Yup.string().required('Fullname is required'),
@@ -58,7 +58,7 @@ const RegisterUser = () => {
 
     return (
         <>
-            <h1>Admin Registration</h1>
+            <h1>User Registration</h1>
             <form onSubmit={formik.handleSubmit}>
                 <input
                     type="text"
