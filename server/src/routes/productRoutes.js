@@ -6,5 +6,6 @@ const router = express.Router()
 router.post('/create', upload.single('file'), productController.createProduct)
 router.get('/list', productController.showProducts)
 router.get('/detail/:id', productController.getProductDetail)
+router.delete('/delete/:id', productController.deleteProduct)
 
 module.exports = router;

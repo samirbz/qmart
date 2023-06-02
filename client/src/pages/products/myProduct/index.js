@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useRouter } from 'next/router';
 
 const MyProducts = () => {
     const [productItem, setProductItem] = useState([]);
     const { phoneNumber } = useSelector(state => state.user)
-
+    const router = useRouter();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -30,6 +30,22 @@ const MyProducts = () => {
         };
     }, []);
 
+    function handleEditClick() {
+        router.push('/products/update')
+    }
+
+    const handleDeleteItem = async (itemId) => {
+        try {
+            // Send a request to remove the item from the cart
+            await fetch(`http://localhost:8080/product/delete/${itemId}`, {
+                method: 'DELETE',
+            });
+
+        } catch (error) {
+            console.error('Error removing product item:', error);
+        }
+    };
+
     return (
         <>
             <ul>
@@ -40,9 +56,8 @@ const MyProducts = () => {
                             <div>{item.productName}</div>
                             <div style={{ color: 'red' }}>Price: {item.price}</div>
                             <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="220" height="150" /><br />
-                            <button>Sold</button>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={handleEditClick}>Edit</button>
+                            <button onClick={() => handleDeleteItem(item._id)}>Delete</button>
                         </li>
                     )
                 ))}

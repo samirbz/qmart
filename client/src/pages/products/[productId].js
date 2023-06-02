@@ -125,10 +125,10 @@ const ProductDetail = () => {
             <h1>Product Details</h1>
             <div>
                 <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="220" height="150" />
-                <p>{product.productDetail}</p>
                 <h2 style={{ color: 'red' }}>Rs. {product.price}</h2>
-                <p>Seller phonenumber:{product.phoneNumber}</p>
                 <p>Seller: {product.businessName}</p>
+                <p>Seller phonenumber:{product.phoneNumber}</p>
+                <p>description: {product.productDetail}</p>
                 <button onClick={handleBuy}>Buy Now</button>
                 <button onClick={handleAddCart}>Add to Cart</button>
             </div>
