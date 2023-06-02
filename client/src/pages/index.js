@@ -17,8 +17,6 @@ const Home = () => {
     }
   };
 
-  console.log(token)
-
   return (
     <div>
       {token ? <Dashboard /> : <Products />}

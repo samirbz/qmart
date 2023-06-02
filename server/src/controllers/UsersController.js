@@ -37,11 +37,10 @@ exports.loginUser = async (req, res) => {
     const { phoneNumber, password, businessName } = req.body;
     // Check if the user exists with the provided phone number
     const user = await UserModel.findOne({ phoneNumber });
- 
+
     if (user) {
         // Compare the provided password with the hashed password in the database
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        console.log(isPasswordValid)
         if (isPasswordValid) {
             // If the phone number and password are valid, generate a JWT token
             const token = jwt.sign({ phoneNumber: phoneNumber }, process.env.SECRET_KEY);

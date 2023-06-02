@@ -130,8 +130,8 @@ const ProductDetail = () => {
                 <p>Seller: {product.businessName}</p>
                 <p>Seller phonenumber:{product.phoneNumber}</p>
                 <p>description: {product.productDetail}</p>
-                <button onClick={handleBuy}>Buy Now</button>
                 <button onClick={handleAddCart}>Add to Cart</button>
+                <button onClick={handleBuy}>Buy Now</button>
             </div>
         </>
     );
