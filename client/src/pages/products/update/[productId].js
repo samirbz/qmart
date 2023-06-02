@@ -7,8 +7,7 @@ import { useRouter } from 'next/router';
 import styles from './update.module.css';
 
 const ProductUpdate = () => {
-    const [file, setFile] = useState(null);
-    const { phoneNumber, businessName } = useSelector(state => state.user);
+    const [file, setFile] = useState("default.png");
     const router = useRouter();
     const { productId } = router.query;
 
@@ -26,6 +25,7 @@ const ProductUpdate = () => {
                 const response = await fetch(`http://localhost:8080/product/list/${productId}`)
                 const data = await response.json();
                 setInitialValues(data)
+                setFile(data.imageName)
             } catch (error) {
                 console.error('Error fetching product details:', error);
             }
@@ -40,8 +40,6 @@ const ProductUpdate = () => {
             formData.append('file', file);
             formData.append('productName', values.productName);
             formData.append('price', values.price);
-            formData.append('phoneNumber', phoneNumber);
-            formData.append('businessName', businessName);
             formData.append('productDetail', values.productDetail);
 
             // Send the form data to the server with headers
@@ -66,6 +64,7 @@ const ProductUpdate = () => {
         productName: '',
         price: '',
         productDetail: '',
+        imageName: '',
     });
 
 
