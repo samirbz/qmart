@@ -17,11 +17,6 @@ const ProductUpdate = () => {
         setFile(file || null);
     };
 
-    const [initialValues, setInitialValues] = useState({
-        productName: '',
-        price: '',
-        productDetail: '',
-    });
 
 
     // fetching seller detail
@@ -37,7 +32,7 @@ const ProductUpdate = () => {
         };
 
         fetchProductState();
-    }, [productId]);
+    }, []);
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
@@ -58,13 +53,20 @@ const ProductUpdate = () => {
             resetForm();
             setFile(null);
             setSubmitting(false);
-            alert('Form submitted successfully!');
+            alert('Updated suceesfull!');
+            router.push('/')
+
         } catch (error) {
             console.error(error);
-            alert('Error occurred while submitting the form.');
+            alert('Error occurred while updating form.');
         }
     };
 
+    const [initialValues, setInitialValues] = useState({
+        productName: '',
+        price: '',
+        productDetail: '',
+    });
 
 
     return (
