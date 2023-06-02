@@ -46,7 +46,7 @@ const ProductUpdate = () => {
 
             // Send the form data to the server with headers
             await fetch(`http://localhost:8080/product/update/${productId}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 body: formData,
             });
 

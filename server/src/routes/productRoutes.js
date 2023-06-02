@@ -8,6 +8,6 @@ router.get('/list', productController.showProducts)
 router.get('/list/:id', productController.getProductState)
 router.get('/detail/:id', productController.getProductDetail)
 router.delete('/delete/:id', productController.deleteProduct)
-router.put('/update/:id',upload.single('file'), productController.updateProduct)
+router.patch('/update/:id', upload.single('file'), productController.updateProduct)
 
 module.exports = router;
