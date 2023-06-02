@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+
 
 const ProductDetail = () => {
     const [product, setProduct] = useState(null);

@@ -30,8 +30,8 @@ const MyProducts = () => {
         };
     }, []);
 
-    function handleEditClick() {
-        router.push('/products/update')
+    const handleEditClick = async (productId) => {
+        router.push(`/products/update/${productId}`)
     }
 
     const handleDeleteItem = async (itemId) => {
@@ -56,7 +56,7 @@ const MyProducts = () => {
                             <div>{item.productName}</div>
                             <div style={{ color: 'red' }}>Price: {item.price}</div>
                             <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="220" height="150" /><br />
-                            <button onClick={handleEditClick}>Edit</button>
+                            <button onClick={() => handleEditClick(item._id)}>Edit</button>
                             <button onClick={() => handleDeleteItem(item._id)}>Delete</button>
                         </li>
                     )
