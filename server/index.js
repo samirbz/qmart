@@ -5,6 +5,7 @@ require('dotenv').config()
 const productRoute = require('./src/routes/productRoutes');
 const usersRoute = require('./src/routes/usersRoutes')
 const cartRoute = require('./src/routes/cartRoutes')
+const orderRoute = require('./src/routes/orderRoutes')
 
 const app = express()
 app.use(express.json({ limit: '50mb' }));
@@ -24,6 +25,7 @@ dbConnect()
 app.use('/product', productRoute)
 app.use('/user', usersRoute)
 app.use('/cart', cartRoute)
+app.use('/order', orderRoute)
 
 // Start the server
 app.listen(port, () => {

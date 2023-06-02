@@ -1,10 +1,10 @@
-const cartModel = require('../models/Cart')
+const CartModel = require('../models/Cart')
 
 // Add to cart
 exports.addToCart = async (req, res) => {
     try {
         const { productId, phoneNumber } = req.body;
-        const newCart = await cartModel.create({ productId, phoneNumber })
+        const newCart = await CartModel.create({ productId, phoneNumber })
         res.status(201).json(newCart);
     } catch (error) {
         console.error(error);
@@ -16,7 +16,7 @@ exports.addToCart = async (req, res) => {
 exports.showCart = async (req, res) => {
     try {
         const phoneNumber = req.query.phoneNumber;
-        const cartItems = await cartModel.find({ phoneNumber: phoneNumber });
+        const cartItems = await CartModel.find({ phoneNumber: phoneNumber });
         res.json(cartItems);
     } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -30,7 +30,7 @@ exports.deleteCart = async (req, res) => {
 
     try {
         // Find and remove the cart item from the database based on productId
-        const deletedItem = await cartModel.deleteOne({ productId: itemId });
+        const deletedItem = await CartModel.deleteOne({ productId: itemId });
 
         if (deletedItem.deletedCount === 0) {
             return res.status(404).json({ error: 'Cart item not found' });

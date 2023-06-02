@@ -28,6 +28,12 @@ const SellerNav = () => {
                     </li>
                     <li>|</li>
                     <li>
+                        <Link href="/orders">
+                            Orders
+                        </Link>
+                    </li>
+                    <li>|</li>
+                    <li>
                         <Link href="/account">
                             My Account
                         </Link>
