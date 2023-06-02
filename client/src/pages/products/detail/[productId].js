@@ -65,11 +65,12 @@ const ProductDetail = () => {
 
                 if (response.ok) {
                     console.log('product added to cart');
-
                     alert("product added to cart");
                 } else if (response.status === 409) {
                     const data = await response.json();
                     alert(data.error);
+                } else if (response.status === 400) {
+                    alert("Item already exists in the cart")
                 } else {
                     console.error('Product add to cart failed');
                 }

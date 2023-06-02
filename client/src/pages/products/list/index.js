@@ -28,7 +28,7 @@ const Products = () => {
     }, []);
 
     const handleProductDetail = (productId) => {
-        router.push(`/products/${productId}`);
+        router.push(`/products/detail/${productId}`);
     };
 
     return (

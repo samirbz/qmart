@@ -4,13 +4,24 @@ const CartModel = require('../models/Cart')
 exports.addToCart = async (req, res) => {
     try {
         const { productId, phoneNumber } = req.body;
-        const newCart = await CartModel.create({ productId, phoneNumber })
+
+        // Check if the item already exists in the database
+        const existingCartItem = await CartModel.findOne({ productId, phoneNumber });
+
+        if (existingCartItem) {
+            // Item already exists, send a message
+            return res.status(400).json({ message: 'Item already exists in the cart' });
+        }
+
+        // Item doesn't exist, add it to the cart
+        const newCart = await CartModel.create({ productId, phoneNumber });
         res.status(201).json(newCart);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
 
 // Show cart items for a specific phone number
 exports.showCart = async (req, res) => {
