@@ -25,7 +25,7 @@ const UserNav = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/cart">
+                        <Link href="/products/cart">
                             Cart
                         </Link>
                     </li>

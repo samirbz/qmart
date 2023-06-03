@@ -7,12 +7,11 @@ const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const router = useRouter();
     const { productId } = router.query;
-
     const { phoneNumber, token, fullname } = useSelector(state => state.user);
 
     // fetching product 
     useEffect(() => {
-        const fetchProduct = async () => {
+        const fetchCartProduct = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/product/detail/${productId}`);
                 const data = await response.json();
@@ -21,27 +20,8 @@ const ProductDetail = () => {
                 console.error('Error fetching product details:', error);
             }
         };
-
-        // Fetch product details
-        fetchProduct();
+        fetchCartProduct();
     }, [productId]);
-
-    // fetching seller detail
-    useEffect(() => {
-        const fetchSellerDetail = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/product/detail/${productId}`);
-                const data = await response.json();
-                setProduct(data);
-            } catch (error) {
-                console.error('Error fetching product details:', error);
-            }
-        };
-
-        // Fetch product details
-        fetchSellerDetail();
-    }, [productId]);
-
 
     if (!product) {
         return <p>Loading...</p>;
@@ -88,8 +68,8 @@ const ProductDetail = () => {
             try {
                 const body = {
                     productId: product._id,
-                    buyerPhoneNumber: phoneNumber,
                     buyerName: fullname,
+                    buyerPhoneNumber: phoneNumber,
                     sellerPhoneNumber: product.phoneNumber,
                     imageName: product.imageName,
                     price: product.price
@@ -103,23 +83,25 @@ const ProductDetail = () => {
                 });
 
                 if (response.ok) {
-                    console.log('Order successfully created');
-
-                    alert("Order successfully created");
+                    console.log('Ordered succesfuuly');
+                    alert("Ordered succesfuuly");
                 } else if (response.status === 409) {
                     const data = await response.json();
                     alert(data.error);
+                } else if (response.status === 400) {
+                    alert("ordered not done")
                 } else {
-                    console.error('Order created failed');
+                    console.error('order failed');
                 }
             } catch (error) {
                 console.error('An error occurred:', error);
             }
         } else {
-            alert("Please login first,to buy")
+            alert("Please login first, to add to cart")
             router.push('/login')
         }
     }
+
 
 
     return (

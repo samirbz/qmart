@@ -8,7 +8,7 @@ const Order = () => {
     useEffect(() => {
         const fetchOrderItems = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/order/show?phoneNumber=${phoneNumber}`);
+                const response = await fetch(`http://localhost:8080/order/show?sellerPhoneNumber=${phoneNumber}`);
                 const data = await response.json();
                 setOrderItems(data);
             } catch (error) {
@@ -20,18 +20,36 @@ const Order = () => {
     }, [phoneNumber]);
 
 
-    const handleRemoveOrderItem = async (productId) => {
+    const handleRemoveOrderItem = async (itemId) => {
         try {
-            // Perform the necessary actions to remove the item from the cart
-            // ...
+            // Send a request to remove the item from the order
+            await fetch(`http://localhost:8080/order/remove/${itemId}`, {
+                method: 'DELETE',
+            });
 
-            // Update the orderItems state to reflect the updated list
-            const updatedOrderItems = orderItems.filter((item) => item.productId !== productId);
-            setOrderItems(updatedOrderItems);
+            //Update the cartItems state by removing the item with matching productId
+            setOrderItems(prevItems => prevItems.filter(item => item._id !== itemId));
+
         } catch (error) {
             console.error('An error occurred while removing the item:', error);
         }
     };
+
+    // const handleRemoveCartItem = async (itemId) => {
+    //     try {
+    //         // Send a request to remove the item from the cart
+    //         await fetch(`http://localhost:8080/cart/delete/${itemId}`, {
+    //             method: 'DELETE',
+    //         });
+
+    //         // Update the cartItems state by removing the item with matching productId
+    //         setCartItems(prevItems => prevItems.filter(item => item.productId !== itemId));
+    //     } catch (error) {
+    //         console.error('Error removing cart item:', error);
+    //     }
+    // };
+
+
 
     return (
         <>
@@ -52,7 +70,7 @@ const Order = () => {
                                 height="150"
                             />
                             <br />
-                            <button onClick={() => handleRemoveOrderItem(item.productId)}>Remove</button>
+                            <button onClick={() => handleRemoveOrderItem(item._id)}>Remove</button>
                         </li>
                     );
                 })}

@@ -15,11 +15,28 @@ exports.addOrder = async (req, res) => {
 // GET orders
 exports.showOrder = async (req, res) => {
     try {
-        const phoneNumber = req.query.phoneNumber;
+        const phoneNumber = req.query.sellerPhoneNumber;
         const orderItems = await OrderModel.find({ sellerPhoneNumber: phoneNumber });
         res.json(orderItems);
     } catch (error) {
         console.error('Error fetching cart items:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+// Remove order
+exports.removeOrder = async (req, res) => {
+    const itemId = req.params.id;
+    try {
+        const RemoveItem = await OrderModel.deleteOne({ _id: itemId });
+
+        if (RemoveItem.RemoveCount === 0) {
+            return res.status(404).json({ error: 'product item not found' });
+        }
+
+        res.status(200).json({ message: 'Order deleted successfully' });
+    } catch (error) {
+        console.error('Error removing orders', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }

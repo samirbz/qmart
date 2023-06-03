@@ -14,6 +14,7 @@ const Cart = () => {
                 const response = await fetch(`http://localhost:8080/cart/showCart?phoneNumber=${phoneNumber}`);
                 const data = await response.json();
                 setCartItems(data);
+                setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching cart items:', error);
             }
@@ -61,43 +62,6 @@ const Cart = () => {
         }
     };
 
-    const handleBuy = async () => {
-        if (token) {
-            try {
-                const body = {
-                    productId: productItems._id,
-                    buyerPhoneNumber: phoneNumber,
-                    buyerName: fullname,
-                    sellerPhoneNumber: productItems.phoneNumber,
-                    imageName: productItems.imageName,
-                    price: productItems.price
-                };
-                const response = await fetch('http://localhost:8080/order/add', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(body),
-                });
-
-                if (response.ok) {
-                    console.log('Order successfully created');
-
-                    alert("Order successfully created");
-                } else if (response.status === 409) {
-                    const data = await response.json();
-                    alert(data.error);
-                } else {
-                    console.error('Order created failed');
-                }
-            } catch (error) {
-                console.error('An error occurred:', error);
-            }
-        } else {
-            alert("Please login first,to buy")
-            router.push('/login')
-        }
-    }
 
     return (
         <>
@@ -114,7 +78,6 @@ const Cart = () => {
                                     <div><h3>{product.productName}</h3></div>
                                     <div style={{ color: 'red' }}>Price: {product.price}</div>
                                     <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="220" height="150" /><br />
-                                    <button onClick={handleBuy}>Buy Now</button>
                                     <button onClick={() => handleRemoveCartItem(item.productId)}>Remove</button>
                                 </li>
                             );

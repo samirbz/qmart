@@ -28,7 +28,7 @@ const SellerNav = () => {
                     </li>
                     <li>|</li>
                     <li>
-                        <Link href="/orders">
+                        <Link href="/products/orders">
                             Orders
                         </Link>
                     </li>

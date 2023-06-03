@@ -15,15 +15,18 @@ const orderSchema = new mongoose.Schema({
     },
     sellerPhoneNumber: {
         type: String,
-        require: true
+        require: true,
+        default: '0000000000'
     },
     imageName: {
         type: String,
-        require: true
+        require: true,
+        default: 'imagename'
     },
     price: {
         type: String,
-        require: true
+        require: true,
+        default: '00000'
     }
 })
 
