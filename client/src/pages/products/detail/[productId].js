@@ -106,15 +106,28 @@ const ProductDetail = () => {
 
     return (
         <>
-            <h1>Product Details</h1>
-            <div>
-                <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="220" height="150" />
-                <h2 style={{ color: 'red' }}>Rs. {product.price}</h2>
-                <p>Seller: {product.businessName}</p>
-                <p>Seller phonenumber:{product.phoneNumber}</p>
-                <p>description: {product.productDetail}</p>
-                <button onClick={handleAddCart}>Add to Cart</button>
-                <button onClick={handleBuy}>Buy Now</button>
+            <div style={{ width: '70%', margin: '0 auto', display: 'flex' }}>
+                <div style={{ flex: '0 0 300px', marginRight: '20px' }}>
+                    <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="100%" height="auto" style={{ objectFit: 'cover', maxHeight: '400px' }} />
+                </div>
+                <div style={{ flex: '1' }}>
+                    <h2 style={{ color: 'red', fontSize: '24px' }}>Rs. {product.price}</h2>
+                    <p style={{ fontSize: '18px' }}>Seller: {product.businessName}</p>
+                    <p style={{ fontSize: '18px' }}>Seller Phone Number: {product.phoneNumber}</p>
+                    <p style={{ fontSize: '18px' }}>Description: {product.productDetail}</p>
+                    <div style={{ marginTop: '20px', display: 'flex' }}>
+                        <button
+                            onClick={handleAddCart}
+                            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded w-40 mr-4">
+                            Add to Cart
+                        </button>
+                        <button
+                            onClick={handleBuy}
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-40">
+                            Buy Now
+                        </button>
+                    </div>
+                </div>
             </div>
         </>
     );

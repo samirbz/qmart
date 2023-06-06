@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Card, CardContent, Typography } from '@mui/material';
+import { Button } from '@mui/base';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -75,10 +77,26 @@ const Cart = () => {
                         if (product) {
                             return (
                                 <li key={item._id}>
-                                    <div><h3>{product.productName}</h3></div>
-                                    <div style={{ color: 'red' }}>Price: {product.price}</div>
-                                    <img src={`http://localhost:8080/uploads/${product.imageName}`} alt="image" width="220" height="150" /><br />
-                                    <button onClick={() => handleRemoveCartItem(item.productId)}>Remove</button>
+                                    <Card sx={{ height: '100%' }}>
+                                        <CardContent>
+                                            <div style={{ height: '150px', marginBottom: '10px' }}>
+                                                <img
+                                                    src={`http://localhost:8080/uploads/${product.imageName}`}
+                                                    alt="image"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Typography variant="h6" component="h2">
+                                                    {product.productName}
+                                                </Typography>
+                                                <Typography color="textSecondary">Price: {product.price}</Typography>
+                                            </div>
+                                            <Button onClick={() => handleRemoveCartItem(item.productId)} variant="outlined">
+                                                Remove
+                                            </Button>
+                                        </CardContent>
+                                    </Card>
                                 </li>
                             );
                         }

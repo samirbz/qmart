@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { Grid, Card, CardContent, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+
 
 const MyProducts = () => {
     const [productItem, setProductItem] = useState([]);
@@ -48,21 +51,55 @@ const MyProducts = () => {
 
     return (
         <>
-            <ul>
-                {productItem.map((item) => (
-                    // Only show the <li> tag if item.phoneNumber matches the login phoneNumber
-                    item.phoneNumber === phoneNumber && (
-                        <li key={item._id}>
-                            <div>{item.productName}</div>
-                            <div style={{ color: 'red' }}>Price: {item.price}</div>
-                            <img src={`http://localhost:8080/uploads/${item.imageName}`} alt='image' width="220" height="150" /><br />
-                            <button onClick={() => handleEditClick(item._id)}>Edit</button>
-                            <button onClick={() => handleDeleteItem(item._id)}>Delete</button>
-                        </li>
-                    )
-                ))}
-            </ul>
+            <div style={{ width: '70%', margin: '0 auto' }}>
+                <h1 className='text-xl'>Your product list</h1>
+                <Grid container spacing={2}>
+                    {productItem.map((item) => (
+                        item.phoneNumber === phoneNumber && (
+                            <Grid item xs={12} sm={6} md={3} lg={2} xl={2} key={item._id}>
+                                <Card
+                                    sx={{
+                                        height: '100%',
+                                        transition: 'box-shadow 0.3s',
+                                        '&:hover': {
+                                            boxShadow: '0px 0px 5px 2px rgba(211, 211, 211)',
+                                            cursor: 'pointer',
+                                        },
+                                    }}
+                                >
+                                    <CardContent>
+                                        <div style={{ height: '150px', marginBottom: '10px' }}>
+                                            <img
+                                                src={`http://localhost:8080/uploads/${item.imageName}`}
+                                                onClick={() => handleProductDetail(item._id)}
+                                                alt="image"
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <Typography variant="h8" component="h2">
+                                                {item.productName}
+                                            </Typography>
+                                            <h2 style={{ color: 'red', fontSize: '16px' }}>Price: {item.price}</h2>
+                                        </div>
+                                        <div>
+                                            {/* <button onClick={() => handleEditClick(item._id)}>Edit</button> */}
+                                            <Button className='mr-2 w-18' variant="outlined" size="small" onClick={() => handleEditClick(item._id)}>
+                                                Edit
+                                            </Button>
+                                            <Button className='w-18' variant="outlined" size="small" onClick={() => handleDeleteItem(item._id)}>
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        )
+                    ))}
+                </Grid>
+            </div>
         </>
+
     );
 };
 

@@ -1,7 +1,9 @@
-import styles from "./nav.module.css"
 import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "@/pages/redux/reducerSlice/userSlice";
+import React from 'react';
+import { AppBar, Toolbar, Typography, InputBase, Button, IconButton } from '@mui/material';
+import { Search as SearchIcon } from '@mui/icons-material';
 
 
 const UserNav = () => {
@@ -14,34 +16,54 @@ const UserNav = () => {
 
     return (
         <>
-            <nav className={styles.navbar}>
-                <Link href="/" className={styles.logoLink}><h1 className={styles.logo}>Qmart</h1></Link>
-                <input placeholder="Search here"></input>
-                <button>Search</button>
-                <ul className={styles.navbarList}>
-                    <li>|</li>
-                    <li>
-                        hi,<Link href="/" >{fullname}</Link>
-                    </li>
-                    <li>|</li>
-                    <li>
-                        <Link href="/products/cart">
+
+            <div style={{ width: '70%', margin: '0 auto' }}>
+                <AppBar position="static" sx={{ bgcolor: 'white', color: 'black', marginBottom: '25px' }}>
+                    <Toolbar className="flex items-center justify-between">
+                        <Link href="/" passHref>
+                            <Typography variant="h4" component="a" sx={{ fontWeight: 'bold', color: 'orange' }}>
+                                Qmart
+                            </Typography>
+                        </Link>
+                        <div className="flex items-center mx-auto">
+                            <InputBase
+                                placeholder="Search here"
+                                sx={{ marginRight: 1, width: '320px' }}
+                                className="flex-grow"
+                            />
+
+                            <IconButton color="inherit">
+                                <SearchIcon />
+                            </IconButton>
+                        </div>
+
+                        <Typography variant="body1">
+                            Hi,
+                            <Link href="/">{fullname}</Link>
+                        </Typography>
+                        <Typography variant="body1" sx={{ mx: 1 }}>
+                            |
+                        </Typography>
+                        <Button color="inherit" component={Link} href="/products/cart">
                             Cart
-                        </Link>
-                    </li>
-                    <li>|</li>
-                    <li>
-                        <Link href="/account">
+                        </Button>
+                        <Typography variant="body1" sx={{ mx: 1 }}>
+                            |
+                        </Typography>
+                        <Button color="inherit" component={Link} href="/account">
                             My Account
-                        </Link>
-                    </li>
-                    <li>|</li>
-                    <li>
-                        <Link href="/" onClick={handleLogout}>Logout</Link>
-                    </li>
-                </ul>
-            </nav>
+                        </Button>
+                        <Typography variant="body1" sx={{ mx: 1 }}>
+                            |
+                        </Typography>
+                        <Button color="inherit" onClick={handleLogout}>
+                            Logout
+                        </Button>
+
+                    </Toolbar>
+                </AppBar>
+            </div>
         </>
-    )
+    );
 }
 export default UserNav

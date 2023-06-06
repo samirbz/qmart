@@ -49,37 +49,48 @@ const Login = () => {
 
     return (
         <>
-            <h1>Login page</h1>
-            <form onSubmit={formik.handleSubmit}>
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+                <h1 className="text-3xl font-bold mb-4">Login page</h1>
+                <form onSubmit={formik.handleSubmit} className="max-w-md">
+                    <div className="mb-4">
+                        <TextField
+                            size="small"
+                            label="phonenumber"
+                            variant="outlined"
+                            name="phoneNumber"
+                            value={formik.values.phoneNumber}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            className="w-full"
+                        />
+                        {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+                            <div className="text-red-600">{formik.errors.phoneNumber}</div>
+                        )}
+                    </div>
 
-                <TextField
-                    label="phonenumber"
-                    variant="outlined"
-                    name="phoneNumber"
-                    value={formik.values.phoneNumber}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} />
-                {formik.touched.phoneNumber && formik.errors.phoneNumber && (
-                    <div>{formik.errors.phoneNumber}</div>
-                )}
-                <br />
+                    <div className="mb-4">
+                        <TextField
+                            type="password"
+                            size="small"
+                            label="password"
+                            variant="outlined"
+                            name="password"
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            className="w-full"
+                        />
+                        {formik.touched.password && formik.errors.password && (
+                            <div className="text-red-600">{formik.errors.password}</div>
+                        )}
+                    </div>
 
-                <TextField
-                    type="password"
-                    label="password"
-                    variant="outlined"
-                    name="password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} />
+                    <Button variant="outlined" type="submit" className="mb-4">
+                        Login
+                    </Button>
+                </form>
+            </div>
 
-                {formik.touched.password && formik.errors.password && (
-                    <div>{formik.errors.password}</div>
-                )}
-                <br />
-                <Button variant="outlined" type="submit">Login</Button>
-                {/* <button type="submit">Login</button> */}
-            </form>
         </>
     );
 };
