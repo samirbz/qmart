@@ -1,7 +1,7 @@
 const Practice = () => {
     return (
         <>
-            <h1>Practice page</h1>
+            <h1 className="text-red-600">Practice page</h1>
         </>
     )
 }
