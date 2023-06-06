@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserDetails } from '../redux/reducerSlice/userSlice'
 import { useRouter } from 'next/router';
+import { Button, TextField } from '@mui/material';
 
 const Login = () => {
 
@@ -15,7 +16,7 @@ const Login = () => {
         initialValues: {
             phoneNumber: '',
             password: '',
-            businessName:'',
+            businessName: '',
         },
         validationSchema: Yup.object({
             phoneNumber: Yup.string().required('Phone number is required'),
@@ -50,33 +51,34 @@ const Login = () => {
         <>
             <h1>Login page</h1>
             <form onSubmit={formik.handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Phone number"
+
+                <TextField
+                    label="phonenumber"
+                    variant="outlined"
                     name="phoneNumber"
                     value={formik.values.phoneNumber}
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
+                    onBlur={formik.handleBlur} />
                 {formik.touched.phoneNumber && formik.errors.phoneNumber && (
                     <div>{formik.errors.phoneNumber}</div>
                 )}
                 <br />
 
-                <input
+                <TextField
                     type="password"
-                    placeholder="Password"
+                    label="password"
+                    variant="outlined"
                     name="password"
                     value={formik.values.password}
                     onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                />
+                    onBlur={formik.handleBlur} />
+
                 {formik.touched.password && formik.errors.password && (
                     <div>{formik.errors.password}</div>
                 )}
                 <br />
-
-                <button type="submit">Login</button>
+                <Button variant="outlined" type="submit">Login</Button>
+                {/* <button type="submit">Login</button> */}
             </form>
         </>
     );
