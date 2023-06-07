@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Card, CardContent, Typography } from '@mui/material';
-import { Button } from '@mui/base';
+import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [productItems, setProductItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { phoneNumber, token, fullname } = useSelector(state => state.user);
-
 
     useEffect(() => {
         const fetchCartItems = async () => {
@@ -50,6 +49,7 @@ const Cart = () => {
         return productItems.find(item => item._id === productId);
     };
 
+    // Remove cart item
     const handleRemoveCartItem = async (itemId) => {
         try {
             // Send a request to remove the item from the cart
@@ -64,48 +64,69 @@ const Cart = () => {
         }
     };
 
-
     return (
         <>
-            <h1>Cart Items</h1>
+
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-                <ul>
-                    {cartItems.map(item => {
-                        const product = getProductById(item.productId);
-                        if (product) {
-                            return (
-                                <li key={item._id}>
-                                    <Card sx={{ height: '100%' }}>
-                                        <CardContent>
-                                            <div style={{ height: '150px', marginBottom: '10px' }}>
-                                                <img
-                                                    src={`http://localhost:8080/uploads/${product.imageName}`}
-                                                    alt="image"
-                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                                />
-                                            </div>
-                                            <div>
-                                                <Typography variant="h6" component="h2">
-                                                    {product.productName}
-                                                </Typography>
-                                                <Typography color="textSecondary">Price: {product.price}</Typography>
-                                            </div>
-                                            <Button onClick={() => handleRemoveCartItem(item.productId)} variant="outlined">
-                                                Remove
-                                            </Button>
-                                        </CardContent>
-                                    </Card>
-                                </li>
-                            );
-                        }
-                        return null;
-                    })}
-                </ul>
+                <div style={{ width: '70%', margin: '0 auto' }}>
+                    <h1 className='text-xl'>Cart items</h1>
+                    <Grid container spacing={2}>
+                        {cartItems.map((item) => {
+                            const product = getProductById(item.productId);
+                            if (product) {
+                                return (
+                                    <Grid item xs={12} sm={6} md={3} lg={2} xl={2} key={item._id}>
+                                        <Card
+                                            sx={{
+                                                height: '100%',
+                                                transition: 'box-shadow 0.3s',
+                                                '&:hover': {
+                                                    boxShadow: '0px 0px 5px 2px rgba(211, 211, 211)',
+                                                    cursor: 'pointer',
+                                                },
+                                            }}
+                                        >
+                                            <CardContent>
+                                                <div style={{ height: '150px', marginBottom: '10px' }}>
+                                                    <img
+                                                        src={`http://localhost:8080/uploads/${product.imageName}`}
+                                                        alt="image"
+                                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Typography variant="h6" component="h2">
+                                                        {product.productName}
+                                                    </Typography>
+                                                    <Typography color="textSecondary">Price: {product.price}</Typography>
+                                                </div>
+                                                <Button
+                                                    onClick={() => handleRemoveCartItem(item.productId)}
+                                                    size="small"
+                                                    variant="outlined">
+                                                    Remove
+                                                </Button>
+                                                <Button
+
+                                                    size="small"
+                                                    variant="outlined">
+                                                    Buy Now
+                                                </Button>
+                                            </CardContent>
+                                        </Card>
+                                    </Grid>
+                                );
+                            }
+                            return null;
+                        })}
+                    </Grid>
+                </div>
             )}
         </>
     );
+
 };
 
 export default Cart;

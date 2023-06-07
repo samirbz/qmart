@@ -51,7 +51,9 @@ const Login = () => {
         <>
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
                 <h1 className="text-3xl font-bold mb-4">Login page</h1>
-                <form onSubmit={formik.handleSubmit} className="max-w-md">
+                <form
+                    onSubmit={formik.handleSubmit}
+                    className="max-w-md w-full bg-white p-6 rounded-lg shadow-md mb-96">
                     <div className="mb-4">
                         <TextField
                             size="small"
@@ -61,7 +63,7 @@ const Login = () => {
                             value={formik.values.phoneNumber}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            className="w-full"
+                            className="w-full "
                         />
                         {formik.touched.phoneNumber && formik.errors.phoneNumber && (
                             <div className="text-red-600">{formik.errors.phoneNumber}</div>
@@ -85,9 +87,11 @@ const Login = () => {
                         )}
                     </div>
 
-                    <Button variant="outlined" type="submit" className="mb-4">
-                        Login
-                    </Button>
+                    <div className="mb-4 flex justify-center"> {/* Apply flex and justify-center classes here */}
+                        <Button variant="outlined" type="submit" className='w-full'>
+                            Login
+                        </Button>
+                    </div>
                 </form>
             </div>
 

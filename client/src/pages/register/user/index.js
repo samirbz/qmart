@@ -61,7 +61,9 @@ const RegisterUser = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <h1 className="text-3xl font-bold mb-4">User Registration</h1>
-            <form onSubmit={formik.handleSubmit} className="max-w-md w-full bg-white p-6 rounded shadow-md">
+            <form
+                onSubmit={formik.handleSubmit}
+                className="max-w-md w-full bg-white p-6 rounded shadow-md mb-64">
                 <div className="mb-4">
                     <TextField
                         variant="outlined"
@@ -132,7 +134,7 @@ const RegisterUser = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded w-full"
                 >
                     Submit
                 </button>

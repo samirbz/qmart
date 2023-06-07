@@ -69,9 +69,8 @@ const RegisterSeller = () => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <h1 className="text-3xl font-bold mb-4">Seller Registration</h1>
             <form
-                className="max-w-md w-full bg-white p-6 rounded shadow-md"
                 onSubmit={formik.handleSubmit}
-            >
+                className="max-w-md w-full bg-white p-6 rounded-lg shadow-md mb-24">
                 <div className="mb-4">
                     <TextField
                         variant="outlined"
@@ -193,7 +192,7 @@ const RegisterSeller = () => {
 
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded w-full"
                 >
                     Submit
                 </button>
