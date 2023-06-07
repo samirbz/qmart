@@ -1,21 +1,27 @@
 # qmart
 
-TECH STACK
+TECH STACK CLIENT
+- Tailwind css
+- Material ui
+- Nextjs
+- Formik & Yup
+- Redux
+
+TECH STACK SERVER
+- Express
+- Mongodb
+- Mongoose
+- Multer
+- bcrypt
 
 FEATURES
 - [x] Login & Register
 - [x] Admin panel
-- [ ] Add product
-- [ ] Delete product
-- [ ] Edit product details
-- [ ] View Buy orders
-- [ ] Add to cart
-- [ ] Send buy request
+- [x] Add product
+- [x] Delete product
+- [x] Edit product details
+- [x] View Buy orders
+- [x] Add to cart
+- [x] Send buy request
 - [ ] Search
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+
