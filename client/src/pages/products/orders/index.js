@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Grid, Card, CardContent, Typography, Button } from '@mui/material';
+
 
 const Order = () => {
     const { phoneNumber } = useSelector(state => state.user);
@@ -53,28 +55,54 @@ const Order = () => {
 
     return (
         <>
-            <h1>Ordered Items</h1>
-            <ul>
-                {orderItems.map((item) => {
-                    return (
-                        <li key={item._id}>
-                            <div>
-                                <p>Customer name: {item.buyerName}</p>
-                                <p>Customer phone: {item.buyerPhoneNumber}</p>
-                            </div>
-                            <div style={{ color: 'red' }}>Price: {item.price}</div>
-                            <img
-                                src={`http://localhost:8080/uploads/${item.imageName}`}
-                                alt="image"
-                                width="220"
-                                height="150"
-                            />
-                            <br />
-                            <button onClick={() => handleRemoveOrderItem(item._id)}>Remove</button>
-                        </li>
-                    );
-                })}
-            </ul>
+            <div style={{ width: '70%', margin: '0 auto' }}>
+                <h1 className="text-xl">Orders items</h1>
+                <Grid container spacing={2}>
+                    {orderItems.map((item) => (
+                        <Grid item xs={12} sm={6} md={3} lg={2} xl={2} key={item._id}>
+                            <Card
+                                sx={{
+                                    height: '100%',
+                                    transition: 'box-shadow 0.3s',
+                                    '&:hover': {
+                                        boxShadow: '0px 0px 5px 2px rgba(211, 211, 211)',
+                                        cursor: 'pointer',
+                                    },
+                                }}
+                            >
+                                <CardContent>
+                                    <div style={{ height: '150px', marginBottom: '10px' }}>
+                                        <img
+                                            src={`http://localhost:8080/uploads/${item.imageName}`}
+                                            alt="image"
+                                            width="220"
+                                            height="150"
+                                        />
+                                    </div>
+                                    <div>
+                                        <Typography variant="h6" component="h2">
+                                            Customer Details:
+                                        </Typography>
+                                        <Typography variant="subtitle1" component="p">
+                                            Name: {item.buyerName}
+                                        </Typography>
+                                        <Typography variant="subtitle2" color="textSecondary" component="p">
+                                            Phone: {item.buyerPhoneNumber}
+                                        </Typography>
+                                    </div>
+                                    <Button
+                                        onClick={() => handleRemoveOrderItem(item._id)}
+                                        size="small"
+                                        variant="outlined"
+                                    >
+                                        Remove
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+            </div>
         </>
     );
 };

@@ -71,7 +71,6 @@ const MyProducts = () => {
                                         <div style={{ height: '150px', marginBottom: '10px' }}>
                                             <img
                                                 src={`http://localhost:8080/uploads/${item.imageName}`}
-                                                onClick={() => handleProductDetail(item._id)}
                                                 alt="image"
                                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                             />

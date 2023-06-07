@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, useFormikContext } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { Button, TextField } from '@mui/material';
+
 
 
 import styles from './update.module.css';
@@ -67,45 +69,64 @@ const ProductUpdate = () => {
         imageName: '',
     });
 
-
     return (
-        <>
-            <h1>Edit product</h1>
+        <div style={{ width: '70%', margin: '0 auto' }}>
+            <h1 className="flex justify-center text-3xl font-bold mb-6">Edit product</h1>
             <Formik
                 enableReinitialize={true}
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
             >
                 {formik => (
-                    <Form className={styles.adminPage}>
-                        <div>
-                            <label htmlFor="productName">Product Name</label>
-                            <br />
-                            <Field type="text" id="productName" name="productName" />
-                        </div>
-                        <div>
-                            <label htmlFor="price">Price</label>
-                            <br />
-                            <Field type="number" id="price" name="price" />
-                        </div>
-                        <div>
-                            <label htmlFor="productDetail">Product Detail</label>
-                            <br />
-                            <Field
-                                style={{ display: 'block', height: '4em' }}
-                                type="text"
-                                id="productDetail"
-                                name="productDetail"
-                                component="textarea"
+                    <Form className="max-w-md mx-auto">
+                        <div className="mb-4">
+                            <TextField
+                                fullWidth
+                                id="productName"
+                                name="productName"
+                                label="Product Name"
+                                variant="outlined"
+                                {...formik.getFieldProps('productName')}
                             />
                         </div>
-                        <input type="file" onChange={handleFileChange} />
-                        <br />
-                        <button type="submit">Update</button>
+                        <div className="mb-4">
+                            <TextField
+                                fullWidth
+                                id="price"
+                                name="price"
+                                label="Price"
+                                type="number"
+                                variant="outlined"
+                                {...formik.getFieldProps('price')}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <TextField
+                                fullWidth
+                                id="productDetail"
+                                name="productDetail"
+                                label="Product Detail"
+                                multiline
+                                rows={4}
+                                variant="outlined"
+                                {...formik.getFieldProps('productDetail')}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <input type="file" onChange={handleFileChange} />
+                        </div>
+                        <Button
+                            type="submit"
+                            variant="outlined"
+                            color="primary"
+                            fullWidth
+                        >
+                            Update
+                        </Button>
                     </Form>
                 )}
             </Formik>
-        </>
+        </div>
     );
 };
 
