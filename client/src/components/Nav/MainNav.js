@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { AppBar, Toolbar, Typography, InputBase, Button, IconButton } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
+import { AppBar, Toolbar, Typography, InputBase, Button, IconButton, TextField, InputAdornment } from '@mui/material';
+import { Height, Search as SearchIcon } from '@mui/icons-material';
 
 const MainNav = () => {
     return (
@@ -14,17 +14,29 @@ const MainNav = () => {
                                 Qmart
                             </Typography>
                         </Link>
-
-                        <div className="flex items-center mx-auto">
-                            <InputBase
+                        <div className="flex items-center mx-auto p-2">
+                            <TextField
                                 placeholder="Search here"
-                                sx={{ marginRight: 1, width: '320px' }}
-                                className="flex-grow"
+                                size="small"
+                                sx={{
+                                    flex: 1,
+                                    marginRight: 1,
+                                    width: '320px',
+                                }}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton color="inherit">
+                                                <SearchIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                    sx: {
+                                        borderRadius: '12px', // Add the borderRadius style property to the InputProps
+                                    },
+                                }}
+                                variant="outlined" // Add variant="outlined" to show the border
                             />
-
-                            <IconButton color="inherit">
-                                <SearchIcon />
-                            </IconButton>
                         </div>
                         <div className="flex items-center">
                             <Button color="inherit" component={Link} href="/login">

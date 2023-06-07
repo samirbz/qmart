@@ -105,6 +105,7 @@ const Cart = () => {
                                                 <Button
                                                     onClick={() => handleRemoveCartItem(item.productId)}
                                                     size="small"
+                                                    className='mr-1'
                                                     variant="outlined">
                                                     Remove
                                                 </Button>

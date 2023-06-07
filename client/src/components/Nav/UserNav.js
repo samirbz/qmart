@@ -2,7 +2,7 @@ import Link from "next/link"
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from "@/pages/redux/reducerSlice/userSlice";
 import React from 'react';
-import { AppBar, Toolbar, Typography, InputBase, Button, IconButton } from '@mui/material';
+import { AppBar, Toolbar, Typography, InputBase, Button, IconButton, TextField, InputAdornment } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 
 
@@ -25,21 +25,34 @@ const UserNav = () => {
                                 Qmart
                             </Typography>
                         </Link>
-                        <div className="flex items-center mx-auto">
-                            <InputBase
+                        <div className="flex items-center mx-auto p-2">
+                            <TextField
                                 placeholder="Search here"
-                                sx={{ marginRight: 1, width: '320px' }}
-                                className="flex-grow"
+                                size="small"
+                                sx={{
+                                    flex: 1,
+                                    marginRight: 1,
+                                    width: '320px',
+                                }}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton color="inherit">
+                                                <SearchIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                    sx: {
+                                        borderRadius: '12px', // Add the borderRadius style property to the InputProps
+                                    },
+                                }}
+                                variant="outlined" // Add variant="outlined" to show the border
                             />
-
-                            <IconButton color="inherit">
-                                <SearchIcon />
-                            </IconButton>
                         </div>
 
                         <Typography variant="body1">
                             Hi,
-                            <Link href="/">{fullname}</Link>
+                            <Link href="/"> {fullname.split(' ')[0]}</Link>
                         </Typography>
                         <Typography variant="body1" sx={{ mx: 1 }}>
                             |
